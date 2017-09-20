@@ -19,7 +19,6 @@ export interface ContainerProps extends WrapperProps {
     peekNextMonth: boolean;
     readOnly: boolean;
     required: boolean;
-    scrollableYearDropDown: boolean;
     selectsEnd: boolean;
     selectsStart: boolean;
     useWeekdaysShort: boolean;
@@ -27,10 +26,9 @@ export interface ContainerProps extends WrapperProps {
     height: number;
     autoFocus: boolean;
     autoComplete: string;
-    calendarClassName: string;
+    // calendarClassName: string;
     className: string;
     dateFormat: string;
-    dateFormatCalendar: string;
     name: string;
     locale: string;
     placeholderText: string;
@@ -67,7 +65,7 @@ export default class MobileCalendarContainer extends Component<ContainerProps, C
   }
     render() {
               return createElement(DatePicker, {
-                  calendarClassName: this.props.calendarClassName,
+                 //  calendarClassName: this.props.calendarClassName,
                   placeholderText: this.props.placeholderText,
                   selected:  this.state.startDate,
                   onChange: this.handleChange,
@@ -77,7 +75,6 @@ export default class MobileCalendarContainer extends Component<ContainerProps, C
                   peekNextMonth: this.props.peekNextMonth,
                   readOnly: this.props.readOnly,
                   required: this.props.required,
-                  scrollableYearDropDown: this.props.scrollableYearDropDown,
                   selectsEnd: this.props.selectsEnd,
                   selectsStart: this.props.selectsStart,
                   useWeekdaysShort: this.useWeekdaysShort,
@@ -85,10 +82,9 @@ export default class MobileCalendarContainer extends Component<ContainerProps, C
                   height: this.props.height,
                   autoFocus: this.props.autoFocus,
                   autoComplete: this.props.autoComplete,
-                  className: this.props.className,
+                   className: this.props.className,
                   dateFormat: this.props.dateFormat,
-                  dateFormatCalendar: this.props.dateFormatCalendar,
-                //   name: this.props.name,
+                   name: this.props.name,
                 //   locale: this.props.locale,
                 //   title: this.props.title,
                 //   todayButton: this.props.todayButton,
