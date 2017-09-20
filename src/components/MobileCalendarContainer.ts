@@ -87,7 +87,7 @@ export default class MobileCalendarContainer extends Component<ContainerProps, C
                   autoComplete: this.props.autoComplete,
                   className: this.props.className,
                   dateFormat: this.props.dateFormat,
-                  dateFormatCalendar: this.props.dateFormatCalendar
+                  dateFormatCalendar: this.props.dateFormatCalendar,
                 //   name: this.props.name,
                 //   locale: this.props.locale,
                 //   title: this.props.title,
@@ -96,7 +96,7 @@ export default class MobileCalendarContainer extends Component<ContainerProps, C
                 //   weekLabel: this.props.weekLabel,
                 //   yearDropDownItem: this.props.yearDropDownItem,
                 //   tabIndex: this.props.tabIndex,
-                //   monthsShown: this.props.monthsShown
+                 monthsShown: this.props.monthsShown
                                            });
                   }
 
