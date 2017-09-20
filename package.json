@@ -2,7 +2,7 @@
   "name": "mobile-calendar",
   "widgetName": "MobileCalendar",
   "version": "0.0.1",
-  "description": "This widget lets users rate an object with stars or custom ic .",
+  "description": "This widget lets users select the date without the hustle of typing .",
   "scripts": {
     "start": "nodemon --watch webpack.config.js --watch Gruntfile.js --exec grunt",
     "pretest": "tsc && npm run lint && grunt release",
