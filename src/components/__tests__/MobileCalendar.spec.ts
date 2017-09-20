@@ -6,7 +6,7 @@ import { createElement } from "react";
 import { MobileCalendar, MobileCalendarProps } from "../MobileCalendar";
 // import { widgetColors } from "../StarRatingContainer";
 
-describe("StarRating", () => {
+describe("MobileCalendar", () => {
 //     let starProps?: StarRatingProps;
 //     const renderStarRating = (props: StarRatingProps) => shallow(createElement(StarRating, props));
 

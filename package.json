@@ -88,9 +88,6 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "react-addons-css-transition-group": "^15.6.0",
-    "react-datepicker": "^0.54.0",
-    "react-icons": "^2.2.5",
-    "react-infinite-calendar": "^2.3.1",
-    "react-select": "^1.0.0-rc.7"
-  }
+    "react-datepicker": "^0.54.0"
+      }
 }

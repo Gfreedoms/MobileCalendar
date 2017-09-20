@@ -121,11 +121,6 @@
             <category>property types</category>
             <description> date format e.g. dd-MM-yyyy, dd/MM</description>
         </property>
-        <property key="dateFormatCalendar" type="string" required="false" defaultValue="MMM YYY">
-            <caption>date format calendar</caption>
-            <category>property types</category>
-            <description> date format e.g.'MMMM YYY'</description>
-        </property>
          <property key="name" type="string" required="false">
             <caption>Name</caption>
             <category>property types</category>
