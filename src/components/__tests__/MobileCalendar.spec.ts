@@ -3,7 +3,7 @@ import { createElement } from "react";
 
 // import * as Rating from "react-rating";
 
-import { MobileCalendar, MobileCalendarProps } from "../MobileCalendar";
+//import { MobileCalendar, MobileCalendarProps } from "../MobileCalendar";
 // import { widgetColors } from "../StarRatingContainer";
 
 describe("MobileCalendar", () => {

@@ -1,10 +1,6 @@
 import * as classNames from "classnames";
 import { Component, createElement } from "react";
-// import * as Rating from "react-rating";
-// import { widgetColors } from "./MobileCalendarContainer";
-
-// import "../ui/StarRating.scss";
-
+import { AppRegistry, View } from 'react-native';
 export interface MobileCalendarProps {
     className?: string;
     initialRate: number;
@@ -16,6 +12,8 @@ export interface MobileCalendarProps {
 }
 
 export class MobileCalendar extends Component<MobileCalendarProps, {}> {
+    private width: object;
+    private height: object;
     private start: number;
     private step: number;
     private stop: number;
@@ -23,8 +21,9 @@ export class MobileCalendar extends Component<MobileCalendarProps, {}> {
 
     constructor(props: MobileCalendarProps) {
         super(props);
-
         this.start = 0;
+        this.width = {flex: 1};
+        this.height ={flex: 1};
         this.step = 1;
         this.stop = this.props.maximumStars;
         this.onChange = this.onChange.bind(this);
@@ -39,8 +38,11 @@ export class MobileCalendar extends Component<MobileCalendarProps, {}> {
         return createElement("div", {
             className: classNames("widget-star-rating", this.props.className),
             style: this.props.style
-        }
-            // createElement(Rating, {
+        },
+        // return createElement(View, {
+        //     style= {flex: 1}
+        // }),
+        //     // createElement(Rating, {
             //     empty: "glyphicon glyphicon-star-empty widget-star-rating-empty widget-star-rating-font",
             //     fractions: this.fractions,
             //     full: "glyphicon glyphicon-star widget-star-rating-font " +

@@ -1,11 +1,9 @@
 import DatePicker from "react-datepicker";
 import * as moment from "moment";
-// tslint:disable-next-line:no-submodule-imports
 import "react-datepicker/dist/react-datepicker.css";
 import { Component, createElement } from "react";
-import { MobileCalendar } from "./MobileCalendar";
+ import { MobileCalendar } from "./MobileCalendar";
 
-// tslint:disable-next-line:no-submodule-imports
 interface WrapperProps {
     class: string;
     mxObject: mendix.lib.MxObject;
@@ -22,11 +20,8 @@ export interface ContainerProps extends WrapperProps {
     selectsEnd: boolean;
     selectsStart: boolean;
     useWeekdaysShort: boolean;
-    width: number;
-    height: number;
     autoFocus: boolean;
     autoComplete: string;
-    // calendarClassName: string;
     className: string;
     dateFormat: string;
     name: string;
@@ -63,10 +58,13 @@ export default class MobileCalendarContainer extends Component<ContainerProps, C
       startDate: Date
     });
   }
+  handleSelect = (Date: any)=>{
+      
+  }
     render() {
               return createElement(DatePicker, {
-                 //  calendarClassName: this.props.calendarClassName,
-                  placeholderText: this.props.placeholderText,
+                  onselect: this.handleSelect,
+                 placeholderText: this.props.placeholderText,
                   selected:  this.state.startDate,
                   onChange: this.handleChange,
                   forceShowMonthNavigation: this.props.forceShowMonthNavigation,
@@ -78,13 +76,11 @@ export default class MobileCalendarContainer extends Component<ContainerProps, C
                   selectsEnd: this.props.selectsEnd,
                   selectsStart: this.props.selectsStart,
                   useWeekdaysShort: this.useWeekdaysShort,
-                  width: this.props.width,
-                  height: this.props.height,
                   autoFocus: this.props.autoFocus,
                   autoComplete: this.props.autoComplete,
-                   className: this.props.className,
+                  className: this.props.className,
                   dateFormat: this.props.dateFormat,
-                   name: this.props.name,
+                  name: this.props.name,
                 //   locale: this.props.locale,
                 //   title: this.props.title,
                 //   todayButton: this.props.todayButton,
@@ -92,7 +88,7 @@ export default class MobileCalendarContainer extends Component<ContainerProps, C
                 //   weekLabel: this.props.weekLabel,
                 //   yearDropDownItem: this.props.yearDropDownItem,
                 //   tabIndex: this.props.tabIndex,
-                 monthsShown: this.props.monthsShown
+                  monthsShown: this.props.monthsShown
                                            });
                   }
 

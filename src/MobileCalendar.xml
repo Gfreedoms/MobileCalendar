@@ -86,16 +86,6 @@
             <category>Display Options</category>
             <description>Use WeekDays Short</description>
         </property>
-        <property key="width" type="integer" required = "true" defaultValue="300">
-            <caption>Calender width</caption>
-            <category>property types</category>
-            <description>Width of the calendar, in pixels</description>
-        </property>
-         <property key="height" type="integer" required="true" defaultValue="100">
-            <caption>Calender Height</caption>
-            <category>property types</category>
-            <description>Height of the calendar, in pixels</description>
-        </property>
          <property key="autoFocus" type="boolean" required="true" defaultValue="true">
             <caption>AutoFocus</caption>
             <category>property types</category>
@@ -111,7 +101,7 @@
             <category>property types</category>
             <description>background class name of the calender eg "rasta-stripes"</description>
         </property>
-          <property key="className" required="false" type="string" defaultValue="blue-border">
+          <property key="className" required="false" type="string" defaultValue="red-border">
             <caption>class Name</caption>
             <category>property types</category>
             <description>input field border color. eg. "red-border"</description>
@@ -119,7 +109,7 @@
          <property key="dateFormat" type="string" required="false" defaultValue="L">
             <caption>date format</caption>
             <category>property types</category>
-            <description> date format e.g. dd-MM-yyyy, dd/MM</description>
+            <description>use for L date in just digits or LL date with month  and LLL to add time</description>
         </property>
          <property key="name" type="string" required="false">
             <caption>Name</caption>
@@ -170,6 +160,11 @@
             <caption>monthsShown</caption>
             <category>property types</category>
             <description>title eg .</description>
+        </property>
+        <property key="changeView" type="boolean" required="true" defaultValue="true">
+            <caption>SelectRange</caption>
+            <category>Range</category>
+            <description>select to choose range</description>
         </property>
     </properties>
 </widget>
