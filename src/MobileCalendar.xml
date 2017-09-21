@@ -11,47 +11,12 @@
             <category>Data source</category>
             <description>Entity whose attributes will be filtered. This entity should match the list view entity</description>
         </property>
-        <property key="allowSameDay" type="string" required="false">
-            <caption>Allow same day</caption>
-            <category>Display Options</category>
-            <description>Will redefine</description>
-        </property>
-        <property key="withPortal" type="boolean" required="true" defaultValue ="true" >
-            <caption>Calendar Class name</caption>
-            <category>choose calendar clas name</category>
-            <description>Choose calendar class name of your choice</description>
-        </property>
-        <property key="disbled" type="boolean" required="true" defaultValue="false">
-            <caption>disbled</caption>
-            <category>Display Options</category>
-            <description>disabled</description>
-        </property>
-        <property key="disbledKeyboardNavigation" type="boolean" required="true" defaultValue="false">
-            <caption>Disabled KeyBoard Navigation</caption>
-            <category>Display Options</category>
-            <description>Whether to display key board bnavigations.</description>
-        </property>
-        <property key="fixedheight" type="boolean" required="true" defaultValue="false">
-            <caption>Fixed Height</caption>
-            <category>Display Options</category>
-            <description>choose to display with a fixed height.</description>
-        </property>
-        <property key="forceShowMonthNavigation" type="boolean" required="true" defaultValue="false">
-            <caption>Month navigati</caption>
-            <category>Display Options</category>
-            <description>choose whether to show month navigation.</description>
-        </property>
         <property key="inline" type="boolean" required="true" defaultValue="false">
             <caption>inline</caption>
             <category>Display Options</category>
             <description>Display calender without input textbox.</description>
         </property>
-        <property key="isClearable" type="boolean" required="true" defaultValue="false">
-            <caption>Is Clearable</caption>
-            <category>Display Options</category>
-            <description>To clear the placeholder.</description>
-        </property>
-        <property key="peekNextMonth" type="boolean" required="true" defaultValue="false">
+         <property key="peekNextMonth" type="boolean" required="true" defaultValue="false">
             <caption>Peek Next Month</caption>
             <category>Display Options</category>
             <description>Whether to  peek the next Moth.</description>
@@ -81,49 +46,14 @@
             <category>Display Options</category>
             <description>Selects start.</description>
         </property>
-        <property key="useWeekdaysShort" type="boolean" required="true" defaultValue="false">
-            <caption>Use Week days short</caption>
-            <category>Display Options</category>
-            <description>Use WeekDays Short</description>
-        </property>
-         <property key="autoFocus" type="boolean" required="true" defaultValue="true">
-            <caption>AutoFocus</caption>
-            <category>property types</category>
-            <description>Whether the Calendar root should be auto-focused when it mounts</description>
-        </property>
-        <property key="autoComplete" type="string" required="false">
-            <caption>display</caption>
-            <category>property types</category>
-            <description>Whether to display the years or days view.</description>
-        </property>
-          <property key="calendarClassName" type="string" required="false">
-            <caption>Calendar class name</caption>
-            <category>property types</category>
-            <description>background class name of the calender eg "rasta-stripes"</description>
-        </property>
-          <property key="className" required="false" type="string" defaultValue="red-border">
-            <caption>class Name</caption>
-            <category>property types</category>
-            <description>input field border color. eg. "red-border"</description>
-        </property>
          <property key="dateFormat" type="string" required="false" defaultValue="L">
             <caption>date format</caption>
             <category>property types</category>
             <description>use for L date in just digits or LL date with month  and LLL to add time</description>
         </property>
-         <property key="name" type="string" required="false">
-            <caption>Name</caption>
-            <category>property types</category>
-            <description>Name eg  .</description>
-        </property>
-         <property key="locale" type="string" required="false">
-            <caption>locale </caption>
-            <category>property types</category>
-            <description>country choice.</description>
-        </property>
          <property key="placeholderText" type="string" required="false">
             <caption>place holder Text</caption>
-            <category>placeholder</category>
+            <category>views</category>
             <description>placeholder in the input text box eg "click to choose date".</description>
         </property>
          <property key="title" type="string" required="false">
@@ -131,20 +61,10 @@
             <category>property types</category>
             <description>title eg .</description>
         </property>
-         <property key="todayButton" type="string" required="false">
-            <caption>todayButton</caption>
-            <category>property types</category>
-            <description> today</description>
-        </property>
          <property key="value" type="string" required="false">
             <caption>value</caption>
             <category>property types</category>
             <description>value.</description>
-        </property>
-        <property key="weekLabel" type="string" required="false">
-            <caption>week label</caption>
-            <category>property types</category>
-            <description>week label.</description>
         </property>
          <property key="yearDropDownItemNumber" type="integer" required="true" defaultValue="6">
             <caption>yearDropDownItemNumber</caption>
@@ -163,8 +83,13 @@
         </property>
         <property key="changeView" type="boolean" required="true" defaultValue="true">
             <caption>SelectRange</caption>
-            <category>Range</category>
+            <category>views</category>
             <description>select to choose range</description>
+        </property>
+        <property key="showTimeSelect" type="boolean" required="true" defaultValue="false">
+            <caption>showTimeSelect</caption>
+            <category>views</category>
+            <description>select time to be more specific</description>
         </property>
     </properties>
 </widget>

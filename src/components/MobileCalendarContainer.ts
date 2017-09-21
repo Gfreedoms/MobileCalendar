@@ -11,25 +11,14 @@ interface WrapperProps {
     style: string;
            }
 export interface ContainerProps extends WrapperProps {
-    forceShowMonthNavigation: boolean;
+    showTimeSelect: boolean;
     inline: boolean;
-    isClearable: boolean;
-    peekNextMonth: boolean;
-    readOnly: boolean;
-    required: boolean;
     selectsEnd: boolean;
     selectsStart: boolean;
-    useWeekdaysShort: boolean;
-    autoFocus: boolean;
-    autoComplete: string;
-    className: string;
     dateFormat: string;
     name: string;
-    locale: string;
     placeholderText: string;
     title: string;
-    todayButton: string;
-    value: string;
     weekLabel: string;
     yearDropDownItem: number;
     tabIndex: number;
@@ -62,32 +51,18 @@ export default class MobileCalendarContainer extends Component<ContainerProps, C
       
   }
     render() {
-              return createElement(DatePicker, {
+              return createElement(DatePicker,{
                   onselect: this.handleSelect,
+                  showTimeSelect: this.props.showTimeSelect,
                  placeholderText: this.props.placeholderText,
                   selected:  this.state.startDate,
                   onChange: this.handleChange,
-                  forceShowMonthNavigation: this.props.forceShowMonthNavigation,
                   inline: this.props.inline,
-                  isClearable: this.props.isClearable,
-                  peekNextMonth: this.props.peekNextMonth,
-                  readOnly: this.props.readOnly,
-                  required: this.props.required,
                   selectsEnd: this.props.selectsEnd,
                   selectsStart: this.props.selectsStart,
                   useWeekdaysShort: this.useWeekdaysShort,
-                  autoFocus: this.props.autoFocus,
-                  autoComplete: this.props.autoComplete,
-                  className: this.props.className,
                   dateFormat: this.props.dateFormat,
                   name: this.props.name,
-                //   locale: this.props.locale,
-                //   title: this.props.title,
-                //   todayButton: this.props.todayButton,
-                //   value: this.props.value,
-                //   weekLabel: this.props.weekLabel,
-                //   yearDropDownItem: this.props.yearDropDownItem,
-                //   tabIndex: this.props.tabIndex,
                   monthsShown: this.props.monthsShown
                                            });
                   }

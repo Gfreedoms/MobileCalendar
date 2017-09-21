@@ -22,8 +22,8 @@ export class MobileCalendar extends Component<MobileCalendarProps, {}> {
     constructor(props: MobileCalendarProps) {
         super(props);
         this.start = 0;
-        this.width = {flex: 1};
-        this.height ={flex: 1};
+        this.width = {flex: 4};
+        this.height ={flex: 4};
         this.step = 1;
         this.stop = this.props.maximumStars;
         this.onChange = this.onChange.bind(this);
@@ -39,22 +39,7 @@ export class MobileCalendar extends Component<MobileCalendarProps, {}> {
             className: classNames("widget-star-rating", this.props.className),
             style: this.props.style
         },
-        // return createElement(View, {
-        //     style= {flex: 1}
-        // }),
-        //     // createElement(Rating, {
-            //     empty: "glyphicon glyphicon-star-empty widget-star-rating-empty widget-star-rating-font",
-            //     fractions: this.fractions,
-            //     full: "glyphicon glyphicon-star widget-star-rating-font " +
-            //     `widget-star-rating-full-${this.props.widgetColor}`,
-            //     initialRate: this.getRate(this.props),
-            //     onChange: !readOnly ? this.onChange : undefined,
-            //     readonly: readOnly,
-            //     start: this.start,
-            //     step: this.step,
-            //     stop: this.stop
-            // })
-        );
+                 );
     }
 
     private getRate(props: MobileCalendarProps) {
