@@ -1,5 +1,5 @@
 ## Mobile Calendar widget
- This will provide a mobile friendly interface for the date picker
+ This will provide a mobile friendly interface for the date picker especially on mobile devices 
 
 
  Features
