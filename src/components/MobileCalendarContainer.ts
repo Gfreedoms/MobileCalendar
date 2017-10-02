@@ -1,9 +1,10 @@
-import { Component, createElement } from "react";
+import { Component, createClass, createElement } from "react";
 import { Alert } from "./Alert";
 import { MobileCalendar } from "./MobileCalendar";
 import InfiniteCalendar from "react-infinite-calendar";
 // tslint:disable-next-line:no-submodule-imports
 import "react-infinite-calendar/styles.css";
+import "../ui/MobileCalendar.scss";
 
 interface WrapperProps {
     class: string;
@@ -13,39 +14,94 @@ interface WrapperProps {
 }
 
 export interface ContainerProps extends WrapperProps {
- //
+    layout: string;
+    showHeader: boolean;
+    shouldHeaderAnimate: boolean;
+    showOverlay: boolean;
+    hideYearsOnSelect: boolean;
+    width: number;
+    height: number;
+    OverscanMonthCount: number;
+    todayHelperRowOffset: number;
+    rowHeight: number;
+    autoFocus: boolean;
+    tabIndex: boolean;
+    display: string;
+    date: any;
+    selected: any;
 }
 
 interface ContainerState {
-    // initialRate: number;
+    selected: any;
+    isPlainText: boolean;
 }
 
 export default class MobileCalendarContainer extends Component<ContainerProps, ContainerState> {
+    handleSelect: any;
+    handleChange: any;
+
     private subscriptionHandles: number[];
 
     constructor(props: ContainerProps) {
         super(props);
 
         this.subscriptionHandles = [];
-        // initialize state (if there's state)
-        // this.state = {
-        //     // initialRate: this.props.mxObject
-        //     //     ? this.props.mxObject.get(this.props.rateAttribute) as number
-        //     //     : 0
-        // };
+        this.state = {
+            isPlainText: true,
+            selected: typeof this.props.selected !== "undefined"
+                ? this.props.selected
+                : new Date()
+        };
+
         this.subscribe(this.props.mxObject);
+        this.handleClick = this.handleClick.bind(this);
     }
 
     render() {
+        // tslint:disable-next-line:no-multi-spaces
+       // const  onSelect: (date: any) => handleSelect (date, { displayKey, selected, ...props}),
+        const selected = this.state.selected;
         const today = new Date();
         const lastWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7);
-        return createElement(InfiniteCalendar, {
-            width: 400,
-            height: 600,
-            selected: today,
-            disabledDays: [ 0, 6 ],
-            minDate: lastWeek
-        });
+        const displayForm = createElement("div", {},
+            createElement("input", {
+                type: "text",
+                className: "form-control",
+                placeholder: lastWeek,
+                onClick: this.handleClick,
+                onSelect: this.handleSelect
+            })
+        );
+        const displayCalendar = createElement("div", {},
+            createElement("input", {
+                type: "text",
+                className: "form-control",
+                placeholder: selected,
+                onClick: this.handleClick
+            }),
+            createElement(InfiniteCalendar, {
+                selected: this.state.selected,
+                disabledDays: [ 0, 6 ],
+                minDate: lastWeek,
+                layout: this.props.layout,
+                width: this.props.width,
+                height: this.props.height,
+                showHeader: this.props.showHeader,
+                showOverlay: this.props.showOverlay,
+                hideYearsOnSelect: this.props.hideYearsOnSelect,
+                todayHelperRowOffset: this.props.todayHelperRowOffset,
+                shouldHeaderAnimate: this.props.shouldHeaderAnimate,
+                rowHeight: this.props.rowHeight,
+                autoFocus: this.props.autoFocus,
+                tabIndex: this.props.tabIndex,
+                display: this.props.display
+            })
+        );
+
+        return createElement("div", {},
+            this.state.isPlainText ? displayForm : displayCalendar
+        );
+
     }
 
     componentWillReceiveProps(nextProps: ContainerProps) {
@@ -74,28 +130,12 @@ export default class MobileCalendarContainer extends Component<ContainerProps, C
     }
 
     private updateRating(mxObject: mendix.lib.MxObject) {
-    // to check on later
+        // to check on later
     }
 
-    public static validateProps(props: ContainerProps) {
-      // to check on later
-        }
-
-    public static parseStyle(style = ""): { [key: string]: string } {
-        try {
-            return style.split(";").reduce<{ [key: string]: string }>((styleObject, line) => {
-                const pair = line.split(":");
-                if (pair.length === 2) {
-                    const name = pair[0].trim().replace(/(-.)/g, match => match[1].toUpperCase());
-                    styleObject[name] = pair[1].trim();
-                }
-                return styleObject;
-            }, {});
-        } catch (error) {
-            // tslint:disable-next-line no-console
-            console.error("Failed to parse style", style, error);
-        }
-
-        return {};
+    private handleClick() {
+        this.setState({
+            isPlainText: !this.state.isPlainText
+        });
     }
 }

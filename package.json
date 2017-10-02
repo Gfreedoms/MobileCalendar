@@ -88,6 +88,7 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "react-addons-css-transition-group": "^15.6.0",
+    "react-icons": "^2.2.5",
     "react-infinite-calendar": "^2.3.1"
-  }
+      }
 }

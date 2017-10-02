@@ -1,15 +1,9 @@
-@import "variables";
-
-.widget-star-rating-font {
-    font-size: 30px;
+h1{
+  margin-left: 30px;
 }
 
-.widget-star-rating-empty {
-    color: #ccc;
+.form-control{
+  margin-top:10px;
+  margin-left: 20px;
+  max-width: 200px;
 }
-
-.widget-star-rating-full-widget {
-    color: #ffa611;
-}
-
-@import "star-rating-theme";

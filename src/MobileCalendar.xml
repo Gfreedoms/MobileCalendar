@@ -3,13 +3,79 @@
     <name>MobileCalendar</name>
     <description></description>
     <icon>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAA/1BMVEUAAACAgACqVQCqgAC2pADMswC9pQCWgACehQC7owPHsADLswCaggCWfgCXgQDLsgKljgC6pAPDqwKVgAC6owOWgAC6owHUviG8pgi9pwvJsxyjiwGjiwOdhwOVgADKtiXLuTGijAXj1V+umQiumQuwmgixmw3VxUjXx03CrhHCrhPRwUDg0F3NuhXOuxjTyz/b0lXSxy/Vyz3165X17Jbt4Hfy6pXl1CDl1Sfm2Cro2zfUzEfU0TzV0j3Y0EzY0FTe1jLg1lXo2ino2ynp2y3p22Hp3DDu3SPu3Wfv3yvx4nTx43Xx5Hzy5Hvy5X3z54Lz54Pz6IX27pf57ZP57pWYlORkAAAAO3RSTlMAAgMGHB4fIjJWV15gYWWPkZSUmJ6itre6ur3BwcjMzc3S09TU1NTX1+Pj4+Pq6u3t7u7v7/b2+fn9/aECAdoAAACeSURBVBgZBcHbTsJAFADA6fZss6FUvIUnQ/j//1ISgxLRSMFt1hmAcQQEIAASkEvJQALyOGYgAeXxoQABhrJvh+EGsQV3lzZV0MW02b60Nhtaens/f3e6cv+0v9ZliePH19x66lz1S+vOh88bgVpTj1QrEvp16YdIZewRyKvN6die71d5ITDE6+nk9hvDTCBffs5Xf/M6A3ZTgjTt8A872zTwPjIKmAAAAABJRU5ErkJggg==
+        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
     </icon>
     <properties>
         <property key="entity" type="entity">
             <caption>List view entity</caption>
             <category>Data source</category>
             <description>Entity whose attributes will be filtered. This entity should match the list view entity</description>
+        </property>
+        <property key="layout" type="string" required="true" defaultValue="Landscape">
+            <caption>layout style format</caption>
+            <category>Display Options</category>
+            <description>Layout of the calendar. Should be one of 'portrait' or 'landscape'</description>
+        </property>
+        <property key="showHeader" type="boolean" required="true" defaultValue="true">
+            <caption>Show Header</caption>
+            <category>Display Options</category>
+            <description>Show/hide the header</description>
+        </property>
+        <property key="shouldHeaderAnimate" type="boolean" required="true" defaultValue="true">
+            <caption>Should Header Animate</caption>
+            <category>Display Options</category>
+            <description>Enable/Disable the header animation</description>
+        </property>
+        <property key="showOverlay" type="boolean" required="true" defaultValue="true">
+            <caption>Show Overlay</caption>
+            <category>Display Options</category>
+            <description>Show/hide the month overlay when scrolling</description>
+        </property>
+        <property key="hideYearsOnSelect" type="boolean" required="true" defaultValue="true">
+            <caption>Hide years on select</caption>
+            <category>Display Options</category>
+            <description>Whether to automatically hide the years view on select.</description>
+        </property>
+        <property key="width" type="integer" defaultValue="400">
+            <caption>Calender width</caption>
+            <category>property types</category>
+            <description>Width of the calendar, in pixels</description>
+        </property>
+         <property key="height" type="integer" defaultValue="100">
+            <caption>Calender Height</caption>
+            <category>property types</category>
+            <description>Height of the calendar, in pixels</description>
+        </property>
+
+          <property key="overscanMonthCount" type="integer" required="true" defaultValue="4">
+            <caption>Over scan month count</caption>
+            <category>Display Options</category>
+            <description>Number of months to render above/below the visible months. Tweaking this can help reduce flickering during scrolling on certain browers/devices..</description>
+        </property>
+        <property key="todayHelperRowOffset" type="integer" required="true" defaultValue="4">
+            <caption>Today helper Row Offset</caption>
+            <category>Display Options</category>
+            <description>This controls the number of rows to scroll past before the Today helper appears.</description>
+        </property>
+           <property key="rowHeight" type="integer" defaultValue="56">
+            <caption>Row Height</caption>
+            <category>property types</category>
+            <description>Height of each row in the calendar (each week is considered a row)</description>
+        </property>
+         <property key="autoFocus" type="boolean" defaultValue="true">
+            <caption>AutoFocus</caption>
+            <category>property types</category>
+            <description>Whether the Calendar root should be auto-focused when it mounts</description>
+        </property>
+        <property key="tabIndex" type="boolean" defaultValue="true">
+            <caption>Tab Index</caption>
+            <category>property types</category>
+            <description>Tab index of the calendar</description>
+        </property>
+        <property key="display" type="string" defaultValue="days">
+            <caption>display</caption>
+            <category>property types</category>
+            <description>Whether to display the years or days view.</description>
         </property>
     </properties>
 </widget>
