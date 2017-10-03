@@ -5,6 +5,8 @@ import InfiniteCalendar from "react-infinite-calendar";
 // tslint:disable-next-line:no-submodule-imports
 import "react-infinite-calendar/styles.css";
 import "../ui/MobileCalendar.scss";
+// tslint:disable-next-line:no-submodule-imports
+import * as format from "date-fns/format";
 
 interface WrapperProps {
     class: string;
@@ -39,7 +41,6 @@ interface ContainerState {
 export default class MobileCalendarContainer extends Component<ContainerProps, ContainerState> {
     handleSelect: any;
     handleChange: any;
-
     private subscriptionHandles: number[];
 
     constructor(props: ContainerProps) {
@@ -55,51 +56,15 @@ export default class MobileCalendarContainer extends Component<ContainerProps, C
 
         this.subscribe(this.props.mxObject);
         this.handleClick = this.handleClick.bind(this);
+        this.executeForms = this.executeForms.bind(this);
     }
 
     render() {
-        const selected = this.state.selected;
-        const today = new Date();
-        const lastWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7);
-        const displayForm = createElement("div", {},
-            createElement("input", {
-                type: "text",
-                className: "form-control",
-                placeholder: lastWeek,
-                onClick: this.handleClick,
-                onSelect: this.handleSelect
-            })
-        );
-        const displayCalendar = createElement("div", {},
-            createElement("input", {
-                type: "text",
-                className: "form-control",
-                placeholder: selected,
-                onClick: this.handleClick
-            }),
-            createElement(InfiniteCalendar, {
-                selected: this.state.selected,
-                disabledDays: [ 0, 6 ],
-                minDate: lastWeek,
-                layout: this.props.layout,
-                width: this.props.width,
-                height: this.props.height,
-                showHeader: this.props.showHeader,
-                showOverlay: this.props.showOverlay,
-                hideYearsOnSelect: this.props.hideYearsOnSelect,
-                todayHelperRowOffset: this.props.todayHelperRowOffset,
-                shouldHeaderAnimate: this.props.shouldHeaderAnimate,
-                rowHeight: this.props.rowHeight,
-                autoFocus: this.props.autoFocus,
-                tabIndex: this.props.tabIndex,
-                display: this.props.display
-            })
-        );
 
-        return createElement("div", {},
-            this.state.isPlainText ? displayForm : displayCalendar
-        );
-
+    return createElement("div", {
+            },
+            this.executeForms()
+            );
     }
 
     componentWillReceiveProps(nextProps: ContainerProps) {
@@ -135,5 +100,51 @@ export default class MobileCalendarContainer extends Component<ContainerProps, C
         this.setState({
             isPlainText: !this.state.isPlainText
         });
+    }
+
+    private executeForms() {
+        const selected = this.state.selected;
+        const today = new Date();
+        const lastWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7);
+        const displayForm = createElement("div", {},
+            createElement("input", {
+                type: "text",
+                className: "form-control",
+                placeholder: lastWeek,
+                onClick: this.handleClick,
+                onSelect: this.handleSelect
+            })
+        );
+        const displayCalendar = createElement("div", {},
+            createElement("input", {
+                type: "text",
+                className: "form-control",
+                placeholder: today,
+                onClick: this.handleClick
+            }),
+            createElement(InfiniteCalendar, {
+
+                onSelect : (date: any) => alert(`You selected: ${format(date, "ddd, MMM Do YYYY")}`),
+                selected: this.state.selected,
+                disabledDays: [ 0, 6 ],
+                minDate: lastWeek,
+                layout: this.props.layout,
+                width: this.props.width,
+                height: this.props.height,
+                showHeader: this.props.showHeader,
+                showOverlay: this.props.showOverlay,
+                hideYearsOnSelect: this.props.hideYearsOnSelect,
+                todayHelperRowOffset: this.props.todayHelperRowOffset,
+                shouldHeaderAnimate: this.props.shouldHeaderAnimate,
+                rowHeight: this.props.rowHeight,
+                autoFocus: this.props.autoFocus,
+                tabIndex: this.props.tabIndex,
+                display: this.props.display
+            })
+        );
+        return createElement("div", {},
+            this.state.isPlainText ? displayForm : displayCalendar
+        );
+
     }
 }
