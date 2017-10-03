@@ -34,13 +34,17 @@ export interface ContainerProps extends WrapperProps {
 }
 
 interface ContainerState {
+    onSelect: any;
     selected: any;
     isPlainText: boolean;
+    printdate: string;
 }
 
 export default class MobileCalendarContainer extends Component<ContainerProps, ContainerState> {
+    onSelect: string;
     handleSelect: any;
     handleChange: any;
+    private dates: string;
     private subscriptionHandles: number[];
 
     constructor(props: ContainerProps) {
@@ -48,7 +52,9 @@ export default class MobileCalendarContainer extends Component<ContainerProps, C
 
         this.subscriptionHandles = [];
         this.state = {
+            onSelect: (date: string) => (`You selected: ${format(date, "ddd, MMM Do YYYY")}`),
             isPlainText: true,
+            printdate: "",
             selected: typeof this.props.selected !== "undefined"
                 ? this.props.selected
                 : new Date()
@@ -56,15 +62,15 @@ export default class MobileCalendarContainer extends Component<ContainerProps, C
 
         this.subscribe(this.props.mxObject);
         this.handleClick = this.handleClick.bind(this);
-        this.executeForms = this.executeForms.bind(this);
+        this.displayInfo = this.displayInfo.bind(this);
     }
 
     render() {
 
-    return createElement("div", {
-            },
-            this.executeForms()
-            );
+        return createElement("div", {
+        },
+            this.displayInfo()
+        );
     }
 
     componentWillReceiveProps(nextProps: ContainerProps) {
@@ -102,7 +108,7 @@ export default class MobileCalendarContainer extends Component<ContainerProps, C
         });
     }
 
-    private executeForms() {
+    private displayInfo() {
         const selected = this.state.selected;
         const today = new Date();
         const lastWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7);
@@ -111,20 +117,19 @@ export default class MobileCalendarContainer extends Component<ContainerProps, C
                 type: "text",
                 className: "form-control",
                 placeholder: lastWeek,
-                onClick: this.handleClick,
-                onSelect: this.handleSelect
+                onClick: this.handleClick
             })
         );
         const displayCalendar = createElement("div", {},
             createElement("input", {
                 type: "text",
-                className: "form-control",
-                placeholder: today,
+                className: "from-control",
+                placeholder: this.state.printdate,
                 onClick: this.handleClick
             }),
             createElement(InfiniteCalendar, {
 
-                onSelect : (date: any) => alert(`You selected: ${format(date, "ddd, MMM Do YYYY")}`),
+                onSelect: (date: string) => this.setState({ printdate: date }),
                 selected: this.state.selected,
                 disabledDays: [ 0, 6 ],
                 minDate: lastWeek,
