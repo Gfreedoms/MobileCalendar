@@ -16,7 +16,7 @@
             <category>Display Options</category>
             <description>Layout of the calendar. Should be one of 'portrait' or 'landscape'</description>
         </property>
-        <property key="showHeader" type="boolean" required="true" defaultValue="true">
+        <property key="showHeader" type="boolean" required="true" defaultValue="false">
             <caption>Show Header</caption>
             <category>Display Options</category>
             <description>Show/hide the header</description>
@@ -36,12 +36,12 @@
             <category>Display Options</category>
             <description>Whether to automatically hide the years view on select.</description>
         </property>
-        <property key="width" type="integer" defaultValue="400">
+        <property key="width" type="integer" defaultValue="250">
             <caption>Calender width</caption>
             <category>property types</category>
             <description>Width of the calendar, in pixels</description>
         </property>
-         <property key="height" type="integer" defaultValue="100">
+         <property key="height" type="integer" defaultValue="350">
             <caption>Calender Height</caption>
             <category>property types</category>
             <description>Height of the calendar, in pixels</description>
