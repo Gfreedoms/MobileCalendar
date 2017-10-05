@@ -51,9 +51,7 @@ export default class MobileCalendarContainer extends Component<ContainerProps, C
 
         this.subscribe(this.props.mxObject);
         this.handleClick = this.handleClick.bind(this);
-        this.displayInfo = this.displayInfo.bind(this);
-        this.handleForm = this.handleForm.bind(this);
-    }
+           }
 
     render() {
         return(this.displayInfo());
@@ -101,6 +99,7 @@ export default class MobileCalendarContainer extends Component<ContainerProps, C
         const displayCalendar = createElement("div", {},
         this.handleForm()
             ,
+            this.formatLayout(),
             this.handleCalendar()
         );
         return createElement("div", {},
@@ -138,6 +137,11 @@ export default class MobileCalendarContainer extends Component<ContainerProps, C
             tabIndex: this.props.tabIndex,
             display: this.props.display
         }));
+    }
+
+    private formatLayout() {
+        return (createElement("br", {})
+        );
     }
 
    }
