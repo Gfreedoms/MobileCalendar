@@ -94,10 +94,10 @@ export default class MobileCalendarContainer extends Component<ContainerProps, C
 
     private displayInfo() {
         const displayTextBox = createElement("div", {},
-          this.handleForm()
+          this.handleInput()
         );
         const displayCalendar = createElement("div", {},
-        this.handleForm()
+        this.handleInput()
             ,
             this.formatLayout(),
             this.handleCalendar()
@@ -108,7 +108,7 @@ export default class MobileCalendarContainer extends Component<ContainerProps, C
 
     }
 
-    private handleForm() {
+    private handleInput() {
          return (createElement("input", {
                 type: "text",
                 className: "form-control",
