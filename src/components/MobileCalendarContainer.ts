@@ -1,12 +1,5 @@
-import { Component, createClass, createElement } from "react";
-import { Alert } from "./Alert";
+import { Component, createElement } from "react";
 import { MobileCalendar } from "./MobileCalendar";
-import InfiniteCalendar from "react-infinite-calendar";
-// tslint:disable-next-line:no-submodule-imports
-import "react-infinite-calendar/styles.css";
-import "../ui/MobileCalendar.scss";
-// tslint:disable-next-line:no-submodule-imports
-import * as format from "date-fns/format";
 
 interface WrapperProps {
     class: string;
@@ -16,6 +9,7 @@ interface WrapperProps {
 }
 
 export interface ContainerProps extends WrapperProps {
+    dateAttribute: string;
     layout: string;
     showHeader: boolean;
     shouldHeaderAnimate: boolean;
@@ -23,7 +17,7 @@ export interface ContainerProps extends WrapperProps {
     hideYearsOnSelect: boolean;
     width: number;
     height: number;
-    OverscanMonthCount: number;
+    overscanMonthCount: number;
     todayHelperRowOffset: number;
     rowHeight: number;
     autoFocus: boolean;
@@ -32,98 +26,26 @@ export interface ContainerProps extends WrapperProps {
 }
 
 interface ContainerState {
-    isPlainText: boolean;
-    printdate: string;
+    dateValue: string;
 }
 
 export default class MobileCalendarContainer extends Component<ContainerProps, ContainerState> {
-    private dates: string;
     private subscriptionHandles: number[];
 
     constructor(props: ContainerProps) {
         super(props);
 
-        this.subscriptionHandles = [];
         this.state = {
-            isPlainText: true,
-            printdate: "tap to insert date"
-                };
+            dateValue: this.getValue(props.dateAttribute, props.mxObject) as string
 
-        this.subscribe(this.props.mxObject);
-        this.handleClick = this.handleClick.bind(this);
-           }
+        };
+
+        this.subscriptionHandles = [];
+        this.handleSubscriptions = this.handleSubscriptions.bind(this);
+    }
 
     render() {
-        return(this.displayInfo());
-    }
-
-    componentWillReceiveProps(nextProps: ContainerProps) {
-        this.subscribe(nextProps.mxObject);
-        this.updateRating(nextProps.mxObject);
-    }
-
-    componentWillUnmount() {
-        this.unSubscribe();
-    }
-
-    private subscribe(contextObject?: mendix.lib.MxObject) {
-        this.unSubscribe();
-
-        if (contextObject) {
-            this.subscriptionHandles.push(window.mx.data.subscribe({
-                callback: () => this.updateRating(contextObject),
-                guid: contextObject.getGuid()
-            }));
-        }
-    }
-
-    private unSubscribe() {
-        this.subscriptionHandles.forEach(window.mx.data.unsubscribe);
-        this.subscriptionHandles = [];
-    }
-
-    private updateRating(mxObject: mendix.lib.MxObject) {
-        // to check on later
-    }
-
-    private handleClick() {
-        this.setState({
-            isPlainText: !this.state.isPlainText
-        });
-    }
-
-    private displayInfo() {
-        const displayTextBox = createElement("div", {},
-          this.handleInput()
-        );
-        const displayCalendar = createElement("div", {},
-        this.handleInput()
-            ,
-            this.formatLayout(),
-            this.handleCalendar()
-        );
-        return createElement("div", {},
-            this.state.isPlainText ? displayTextBox : displayCalendar
-        );
-
-    }
-
-    private handleInput() {
-         return (createElement("input", {
-                type: "text",
-                className: "form-control",
-                placeholder: this.state.printdate,
-                onClick: this.handleClick
-            }));
-    }
-
-    private handleCalendar() {
-        const today = new Date();
-        const lastWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7);
-        return (createElement(InfiniteCalendar, {
-            onSelect: (date: string) => this.setState({ printdate: `${format(date, "ddd, MMM Do YYYY")}` }),
-            disabledDays: [ 0, 6 ],
-            minDate: lastWeek,
+        return createElement(MobileCalendar, {
             layout: this.props.layout,
             width: this.props.width,
             height: this.props.height,
@@ -135,13 +57,65 @@ export default class MobileCalendarContainer extends Component<ContainerProps, C
             rowHeight: this.props.rowHeight,
             autoFocus: this.props.autoFocus,
             tabIndex: this.props.tabIndex,
-            display: this.props.display
-        }));
+            display: this.props.display,
+            dateAttribute: this.state.dateValue
+        });
     }
 
-    private formatLayout() {
-        return (createElement("br", {})
-        );
+    componentWillReceiveProps(newProps: ContainerProps) {
+        this.resetSubscriptions(newProps.mxObject);
+        this.setState({
+            dateValue: this.getValue(this.props.dateAttribute, newProps.mxObject)
+        });
     }
 
-   }
+    componentWillUnmount() {
+        this.subscriptionHandles.forEach(window.mx.data.unsubscribe);
+    }
+
+    private getValue(attribute: string, mxObject?: mendix.lib.MxObject): string {
+        return mxObject ? (mxObject.get(attribute) as string) : "";
+    }
+
+    private resetSubscriptions(mxObject?: mendix.lib.MxObject) {
+        this.subscriptionHandles.forEach(window.mx.data.unsubscribe);
+
+        if (mxObject) {
+            this.subscriptionHandles.push(mx.data.subscribe({
+                callback: this.handleSubscriptions,
+                guid: mxObject.getGuid()
+            }));
+
+            this.subscriptionHandles.push(mx.data.subscribe({
+                attr: this.props.dateAttribute,
+                callback: this.handleSubscriptions,
+                guid: mxObject.getGuid()
+            }));
+        }
+    }
+
+    private handleSubscriptions() {
+        this.setState({
+            dateValue: this.getValue(this.props.dateAttribute, this.props.mxObject) as string
+        });
+    }
+
+    public static parseStyle(style = ""): { [key: string]: string } {
+        try {
+            return style.split(";").reduce<{ [key: string]: string }>((styleObject, line) => {
+                const pair = line.split(":");
+                if (pair.length === 2) {
+                    const name = pair[0].trim().replace(/(-.)/g, match => match[1].toUpperCase());
+                    styleObject[name] = pair[1].trim();
+                }
+                return styleObject;
+            }, {});
+        } catch (error) {
+            // tslint:disable-next-line no-console
+            console.log("Failed to parse style", style, error);
+        }
+
+        return {};
+    }
+
+}

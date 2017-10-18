@@ -12,7 +12,7 @@
     "eofline": true,
     "indent": [
       true,
-      "tab"
+      "spaces"
     ],
     "member-ordering": [
       true,
@@ -31,7 +31,7 @@
       true
     ],
     "no-internal-module": true,
-   // "no-shadowed-variable": false,
+    "no-shadowed-variable": true,
     "no-switch-case-fall-through": true,
     "no-trailing-whitespace": true,
     "no-unused-expression": true,
@@ -39,8 +39,8 @@
     "one-line": [
       true,
       "check-catch",
-      "check-finally",
       "check-else",
+      "check-finally",
       "check-open-brace",
       "check-whitespace"
     ],
@@ -96,6 +96,11 @@
     "no-unexpected-multiline": true,
     "no-sparse-arrays": true,
     "no-regex-spaces": true,
+    "no-submodule-imports": [
+      true,
+      "react-infinite-calendar/styles.css",
+      "date-fns/format"
+    ],
     "no-invalid-regexp": true,
     "valid-typeof": true,
     "array-bracket-spacing": [
@@ -133,14 +138,14 @@
       }
     ],
     "curly": false,
-    "max-line-length": [
-      true,
-      120
-    ],
     "arrow-parens": false,
-    "no-namespace": false,
-    "array-type": [ true, "array" ],
-    "object-literal-sort-keys": false
+    "no-object-literal-type-assertion": false,
+    "linebreak-style": [
+      true,
+      "LF"
+    ],
+    "object-literal-sort-keys": false,
+    "array-type": false
   },
   "jsRules": {
     "trailing-comma": [
@@ -150,6 +155,10 @@
     "array-bracket-spacing": [
       true,
       "always"
+    ],
+    "linebreak-style": [
+      true,
+      "LF"
     ]
   }
 }
