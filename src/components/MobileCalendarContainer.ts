@@ -58,7 +58,8 @@ export default class MobileCalendarContainer extends Component<ContainerProps, C
             autoFocus: this.props.autoFocus,
             tabIndex: this.props.tabIndex,
             display: this.props.display,
-            dateAttribute: this.state.dateValue
+            dateAttribute: this.state.dateValue,
+            updateDate: this.UpdateDate
         });
     }
 
@@ -85,12 +86,6 @@ export default class MobileCalendarContainer extends Component<ContainerProps, C
                 callback: this.handleSubscriptions,
                 guid: mxObject.getGuid()
             }));
-
-            this.subscriptionHandles.push(mx.data.subscribe({
-                attr: this.props.dateAttribute,
-                callback: this.handleSubscriptions,
-                guid: mxObject.getGuid()
-            }));
         }
     }
 
@@ -98,6 +93,10 @@ export default class MobileCalendarContainer extends Component<ContainerProps, C
         this.setState({
             dateValue: this.getValue(this.props.dateAttribute, this.props.mxObject) as string
         });
+    }
+
+    private UpdateDate(newDate: string) {
+        this.props.mxObject.set(this.props.dateAttribute, newDate);
     }
 
     public static parseStyle(style = ""): { [key: string]: string } {

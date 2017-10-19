@@ -22,6 +22,7 @@ export interface MobileCalendarProps {
     tabIndex: boolean;
     display: string;
     dateAttribute: string;
+    updateDate: (date: string) => void;
 }
 
 interface MobileCalendarState {
@@ -51,25 +52,28 @@ export class MobileCalendar extends Component<MobileCalendarProps, MobileCalenda
             }),
             createElement("br", {}),
             !this.state.isPlainText
-            ? createElement(InfiniteCalendar, {
-                onSelect: (date: string) => this.setState({
-                    printdate: `${format(date, "ddd, MMM Do YYYY")}`,
-                    isPlainText: !this.state.isPlainText
-                }),
-                width: this.props.width,
-                layout: this.props.layout,
-                height: this.props.height,
-                showHeader: this.props.showHeader,
-                showOverlay: this.props.showOverlay,
-                hideYearsOnSelect: this.props.hideYearsOnSelect,
-                todayHelperRowOffset: this.props.todayHelperRowOffset,
-                shouldHeaderAnimate: this.props.shouldHeaderAnimate,
-                rowHeight: this.props.rowHeight,
-                autoFocus: this.props.autoFocus,
-                tabIndex: this.props.tabIndex,
-                display: this.props.display
-            })
-            : null
+                ? createElement(InfiniteCalendar, {
+                    onSelect: (date: string) => {
+                        this.setState({
+                            printdate: `${format(date, "ddd, MMM Do YYYY")}`,
+                            isPlainText: !this.state.isPlainText
+                        });
+                        this.props.updateDate(date);
+                    },
+                    width: this.props.width,
+                    layout: this.props.layout,
+                    height: this.props.height,
+                    showHeader: this.props.showHeader,
+                    showOverlay: this.props.showOverlay,
+                    hideYearsOnSelect: this.props.hideYearsOnSelect,
+                    todayHelperRowOffset: this.props.todayHelperRowOffset,
+                    shouldHeaderAnimate: this.props.shouldHeaderAnimate,
+                    rowHeight: this.props.rowHeight,
+                    autoFocus: this.props.autoFocus,
+                    tabIndex: this.props.tabIndex,
+                    display: this.props.display
+                })
+                : null
         );
     }
 
