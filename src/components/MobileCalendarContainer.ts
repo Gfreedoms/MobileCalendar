@@ -23,6 +23,7 @@ export interface ContainerProps extends WrapperProps {
     autoFocus: boolean;
     tabIndex: boolean;
     display: string;
+    selected: Date;
 }
 
 interface ContainerState {
@@ -116,5 +117,4 @@ export default class MobileCalendarContainer extends Component<ContainerProps, C
 
         return {};
     }
-
 }

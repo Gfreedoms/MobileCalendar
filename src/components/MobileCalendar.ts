@@ -22,6 +22,7 @@ export interface MobileCalendarProps {
     tabIndex: boolean;
     display: string;
     dateAttribute: string;
+    selected?: Date;
     updateDate: (date: string) => void;
 }
 
@@ -72,6 +73,7 @@ export class MobileCalendar extends Component<MobileCalendarProps, MobileCalenda
                     autoFocus: this.props.autoFocus,
                     tabIndex: this.props.tabIndex,
                     display: this.props.display
+                    selected: this.props.dateAttribute
                 })
                 : null
         );
