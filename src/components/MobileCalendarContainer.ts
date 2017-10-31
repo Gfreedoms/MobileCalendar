@@ -23,6 +23,7 @@ export interface ContainerProps extends WrapperProps {
     autoFocus: boolean;
     tabIndex: boolean;
     display: string;
+    formatDate: string;
     selected: Date;
 }
 
@@ -38,15 +39,18 @@ export default class MobileCalendarContainer extends Component<ContainerProps, C
 
         this.state = {
             dateValue: this.getValue(props.dateAttribute, props.mxObject) as string
-
         };
 
         this.subscriptionHandles = [];
         this.handleSubscriptions = this.handleSubscriptions.bind(this);
+        this.updateDate = this.updateDate.bind(this);
+        this.resetSubscriptions = this.resetSubscriptions.bind(this);
     }
 
     render() {
+
         return createElement(MobileCalendar, {
+            formatDate: this.props.formatDate,
             layout: this.props.layout,
             width: this.props.width,
             height: this.props.height,
@@ -60,7 +64,7 @@ export default class MobileCalendarContainer extends Component<ContainerProps, C
             tabIndex: this.props.tabIndex,
             display: this.props.display,
             dateAttribute: this.state.dateValue,
-            updateDate: this.UpdateDate
+            updateDate: this.updateDate
         });
     }
 
@@ -96,7 +100,7 @@ export default class MobileCalendarContainer extends Component<ContainerProps, C
         });
     }
 
-    private UpdateDate(newDate: string) {
+    private updateDate(newDate: string) {
         this.props.mxObject.set(this.props.dateAttribute, newDate);
     }
 
@@ -117,4 +121,5 @@ export default class MobileCalendarContainer extends Component<ContainerProps, C
 
         return {};
     }
+
 }

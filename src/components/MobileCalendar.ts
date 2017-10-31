@@ -3,6 +3,7 @@ import InfiniteCalendar from "react-infinite-calendar";
 import "react-infinite-calendar/styles.css";
 import "../ui/MobileCalendar.scss";
 import * as format from "date-fns/format";
+import * as FaCalendar from "react-icons/lib/fa/calendar";
 
 export interface MobileCalendarProps {
     className?: string;
@@ -23,6 +24,7 @@ export interface MobileCalendarProps {
     display: string;
     dateAttribute: string;
     selected?: Date;
+    formatDate: string;
     updateDate: (date: string) => void;
 }
 
@@ -38,25 +40,34 @@ export class MobileCalendar extends Component<MobileCalendarProps, MobileCalenda
 
         this.state = {
             isPlainText: true,
-            printdate: `${format(props.dateAttribute, "ddd, MMM Do YYYY")}`
+            printdate: `${format(props.dateAttribute, this.props.formatDate)}`
         };
         this.handleClick = this.handleClick.bind(this);
     }
 
     render() {
-        return createElement("div", {},
-            createElement("input", {
-                type: "text",
-                className: "form-control",
-                placeholder: this.state.printdate,
-                onClick: this.handleClick
-            }),
+        return createElement("div", {
+        },
+            createElement("div", {},
+                createElement("input", {
+                    type: "text",
+                    className: "form-control",
+                    placeholder: this.state.printdate,
+                    onClick: this.handleClick,
+                    onChange: this.handleChangeEvent(this.props.dateAttribute)
+                }),
+                createElement("a", {},
+                    createElement(FaCalendar, {
+                        type: null,
+                        className: "form-row",
+                        onClick: this.handleClick
+                    }))),
             createElement("br", {}),
             !this.state.isPlainText
                 ? createElement(InfiniteCalendar, {
                     onSelect: (date: string) => {
                         this.setState({
-                            printdate: `${format(date, "ddd, MMM Do YYYY")}`,
+                            printdate: `${format(date, this.props.formatDate)}`,
                             isPlainText: !this.state.isPlainText
                         });
                         this.props.updateDate(date);
@@ -73,7 +84,7 @@ export class MobileCalendar extends Component<MobileCalendarProps, MobileCalenda
                     autoFocus: this.props.autoFocus,
                     tabIndex: this.props.tabIndex,
                     display: this.props.display,
-                    selected: this.props.selected
+                    selected: this.state.printdate
                 })
                 : null
         );
@@ -81,7 +92,7 @@ export class MobileCalendar extends Component<MobileCalendarProps, MobileCalenda
 
     componentWillReceiveProps(newProps: MobileCalendarProps) {
         this.setState({
-            printdate: `${format(newProps.dateAttribute, "ddd, MMM Do YYYY")}`
+            printdate: `${format(newProps.dateAttribute, this.props.formatDate)}`
         });
     }
 
@@ -89,5 +100,9 @@ export class MobileCalendar extends Component<MobileCalendarProps, MobileCalenda
         this.setState({
             isPlainText: !this.state.isPlainText
         });
+    }
+
+    private handleChangeEvent(val: any) {
+        return val;
     }
 }

@@ -99,7 +99,8 @@
     "no-submodule-imports": [
       true,
       "react-infinite-calendar/styles.css",
-      "date-fns/format"
+      "date-fns/format",
+      "react-icons/lib/fa/calendar"
     ],
     "no-invalid-regexp": true,
     "valid-typeof": true,
