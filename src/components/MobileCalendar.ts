@@ -72,8 +72,8 @@ export class MobileCalendar extends Component<MobileCalendarProps, MobileCalenda
                     rowHeight: this.props.rowHeight,
                     autoFocus: this.props.autoFocus,
                     tabIndex: this.props.tabIndex,
-                    display: this.props.display
-                    selected: this.props.dateAttribute
+                    display: this.props.display,
+                    selected: this.props.selected
                 })
                 : null
         );
