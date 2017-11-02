@@ -19,20 +19,10 @@
                 <attributeType name="DateTime" />
             </attributeTypes>
         </property>
-        <property key="layout" type="string" required="true" defaultValue="Landscape">
-            <caption>layout style format</caption>
-            <category>Appearance</category>
-            <description>Layout of the calendar. Should be one of 'portrait' or 'landscape'</description>
-        </property>
-        <property key="showHeader" type="boolean" required="true" defaultValue="false">
+        <property key="showHeader" type="boolean" required="true" defaultValue="true">
             <caption>Show header</caption>
             <category>Appearance</category>
             <description>Show/hide the header</description>
-        </property>
-        <property key="shouldHeaderAnimate" type="boolean" required="true" defaultValue="true">
-            <caption>Should header animate</caption>
-            <category>Appearance</category>
-            <description>Enable/Disable the header animation</description>
         </property>
         <property key="showOverlay" type="boolean" required="true" defaultValue="true">
             <caption>Show overlay</caption>
@@ -51,12 +41,12 @@
         </property>
         <property key="width" type="integer" defaultValue="250">
             <caption>Calender width</caption>
-            <category>Size</category>
+            <category>General</category>
             <description>Width of the calendar in pixels</description>
         </property>
          <property key="height" type="integer" defaultValue="350">
             <caption>Calender height</caption>
-            <category>Size</category>
+            <category>General</category>
             <description>Height of the calendar in pixels</description>
         </property>
 
@@ -70,24 +60,24 @@
             <category>Appearance</category>
             <description>This controls the number of rows to scroll past before the Today helper appears.</description>
         </property>
-           <!-- <property key="rowHeight" type="integer" defaultValue="56">
+           <property key="rowHeight" type="integer" defaultValue="56">
             <caption>Row height</caption>
-            <category>Size</category>
+            <category>General</category>
             <description>Height of each row in the calendar (each week is considered a row)</description>
-        </property> -->
-         <!-- <property key="autoFocus" type="boolean" defaultValue="true">
+        </property>
+         <property key="autoFocus" type="boolean" defaultValue="true">
             <caption>Auto focus</caption>
-            <category>Size</category>
+            <category>General</category>
             <description>Whether the Calendar root should be auto-focused when it mounts</description>
-        </property> -->
-        <!-- <property key="tabIndex" type="boolean" defaultValue="true">
+        </property>
+        <property key="tabIndex" type="boolean" defaultValue="true">
             <caption>Tab index</caption>
-            <category>Size</category>
+            <category>General</category>
             <description>Tab index of the calendar</description>
-        </property> -->
+        </property>
         <property key="formatDate" type="string" defaultValue="MM/DD/YYYY">
             <caption>format date</caption>
-            <category>Data source</category>
+            <category>General</category>
             <description>choose format of your choice. eg MM/DD/YYYY, MMM/DD/YYYY, MM-DD-YYYY, MMM-DD-YYYY </description>
         </property>
     </properties>
