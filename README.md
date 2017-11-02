@@ -42,7 +42,7 @@ Place the widget in a data view.
  select the attribute on the tag entity selected above. 
 
 ## Issues, suggestions and feature requests
-We are actively maintaining this widget, please report any issues or suggestion for improvement at https://github.com/mendixlabs/tag/issues
+We are actively maintaining this widget, please report any issues or suggestion for improvement at https://github.com/Gfreedoms/MobileCalendar/issues
 
 ## Development and contribution
 Yes please! Feature requests / pull requests are welcome. 
