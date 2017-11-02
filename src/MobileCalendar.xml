@@ -70,21 +70,21 @@
             <category>Appearance</category>
             <description>This controls the number of rows to scroll past before the Today helper appears.</description>
         </property>
-           <property key="rowHeight" type="integer" defaultValue="56">
+           <!-- <property key="rowHeight" type="integer" defaultValue="56">
             <caption>Row height</caption>
             <category>Size</category>
             <description>Height of each row in the calendar (each week is considered a row)</description>
-        </property>
-         <property key="autoFocus" type="boolean" defaultValue="true">
+        </property> -->
+         <!-- <property key="autoFocus" type="boolean" defaultValue="true">
             <caption>Auto focus</caption>
             <category>Size</category>
             <description>Whether the Calendar root should be auto-focused when it mounts</description>
-        </property>
-        <property key="tabIndex" type="boolean" defaultValue="true">
+        </property> -->
+        <!-- <property key="tabIndex" type="boolean" defaultValue="true">
             <caption>Tab index</caption>
             <category>Size</category>
             <description>Tab index of the calendar</description>
-        </property>
+        </property> -->
         <property key="formatDate" type="string" defaultValue="MM/DD/YYYY">
             <caption>format date</caption>
             <category>Data source</category>
