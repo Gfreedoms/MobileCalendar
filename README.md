@@ -39,7 +39,7 @@ Place the widget in a data view.
  
  ![Data source](/assets/Attribute.png)
  
- - On the `Date attribute` option of the `Data source` tab, browse and 
+ - On the ` Calendar attribute` option of the `Data source` tab, browse and 
  select the attribute on the tag entity selected above. 
 
 ## Issues, suggestions and feature requests
