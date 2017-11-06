@@ -1,4 +1,4 @@
-# Mobile Calenndar
+# Mobile Calendar
 This is a mobile friendly date picker
 
 ## Features
@@ -48,4 +48,4 @@ We are actively maintaining this widget, please report any issues or suggestion 
 Yes please! Feature requests / pull requests are welcome. 
 
 ## License
-* Mobile Calendar * is available under the MIT License.
+* Mobile Calendar *is available under the MIT License.
