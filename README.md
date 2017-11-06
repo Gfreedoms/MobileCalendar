@@ -45,7 +45,7 @@ Place the widget in a data view.
 We are actively maintaining this widget, please report any issues or suggestion for improvement at https://github.com/Gfreedoms/MobileCalendar/issues
 
 ## Development and contribution
-Yes please! Feature requests / pull requests are welcome. 
+Please follow [development guide](/development.md). 
 
 ## License
 * Mobile Calendar *is available under the MIT License.
