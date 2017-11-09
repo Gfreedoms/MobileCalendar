@@ -2,6 +2,7 @@
   float: left;
   max-width: 200px;
   position:relative;
+  margin-left: 20px;
 }
 
 .form-row {
@@ -12,4 +13,27 @@
   margin-top: 9px;
 }
 
- 
+.Cal__Day__root.Cal__Day__selected .Cal__Day__selection, .Calendar {
+  width: 42px ;
+  height: 42px;
+  margin-left: -20px;
+ }
+
+.Cal__Day__root.Cal__Day__today:before, .Calendar {
+  width: 42px;
+  height: 42px;
+}
+
+.Cal__Day__root, .Calendar {
+  font-size: 16px;
+ }
+
+ svg.form-row{
+  height: 32px;
+  width: 30px;
+  margin-top: 0px;
+ }
+ .Calendar{
+   margin-left: 1px;
+ }
+
