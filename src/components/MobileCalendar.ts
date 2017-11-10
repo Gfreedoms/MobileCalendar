@@ -43,6 +43,7 @@ export class MobileCalendar extends Component<MobileCalendarProps, MobileCalenda
             printdate: `${format(props.dateAttribute, this.props.formatDate)}`
         };
         this.handleClick = this.handleClick.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
 
     render() {
@@ -54,7 +55,8 @@ export class MobileCalendar extends Component<MobileCalendarProps, MobileCalenda
                     className: "form-control",
                     placeholder: this.state.printdate,
                     onClick: this.handleClick,
-                    onChange: this.handleChangeEvent(this.props.dateAttribute)
+                    onChange: this.handleChange,
+                    dateAttribute: this.props.dateAttribute
                 }),
                 createElement("a", {},
                     createElement(FaCalendar, {
@@ -65,7 +67,9 @@ export class MobileCalendar extends Component<MobileCalendarProps, MobileCalenda
             createElement("br", {}),
             !this.state.isPlainText
                 ? createElement(InfiniteCalendar, {
+                    className: "Calendar",
                     onSelect: (date: string) => {
+
                         this.setState({
                             printdate: `${format(date, this.props.formatDate)}`,
                             isPlainText: !this.state.isPlainText
@@ -102,7 +106,10 @@ export class MobileCalendar extends Component<MobileCalendarProps, MobileCalenda
         });
     }
 
-    private handleChangeEvent(val: any) {
-        return val;
+    handleChange(dateAttribute: string) {
+        this.setState({
+            printdate: dateAttribute
+        });
     }
+
 }
