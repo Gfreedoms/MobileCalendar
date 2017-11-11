@@ -39,7 +39,7 @@
             <category>Appearance</category>
             <description>Whether to automatically hide the years view on select.</description>
         </property>
-        <property key="width" type="integer" defaultValue="300">
+        <property key="width" type="integer" defaultValue="250">
             <caption>Calender width</caption>
             <category>General</category>
             <description>Width of the calendar in pixels</description>

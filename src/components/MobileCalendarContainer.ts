@@ -1,115 +1,130 @@
 import { Component, createElement } from "react";
-import InfiniteCalendar from "react-infinite-calendar";
-import "react-infinite-calendar/styles.css";
-import "../ui/MobileCalendar.scss";
-import * as format from "date-fns/format";
-import * as FaCalendar from "react-icons/lib/fa/calendar";
+import { MobileCalendar } from "./MobileCalendar";
 
-export interface MobileCalendarProps {
-    className?: string;
-    readOnly?: boolean;
-    style?: object;
-    date?: string;
-    layout?: string;
+interface WrapperProps {
+    class: string;
+    mxObject: mendix.lib.MxObject;
+    readOnly: boolean;
+    style: string;
+}
+
+export interface ContainerProps extends WrapperProps {
+    editable: boolean;
+    dateAttribute: string;
+    layout: string;
     showHeader: boolean;
     shouldHeaderAnimate: boolean;
     showOverlay: boolean;
     hideYearsOnSelect: boolean;
     width: number;
     height: number;
+    overscanMonthCount: number;
     todayHelperRowOffset: number;
     rowHeight: number;
     autoFocus: boolean;
     tabIndex: boolean;
     display: string;
-    dateAttribute: string;
-    selected?: Date;
     formatDate: string;
-    updateDate: (date: string) => void;
+    selected: Date;
 }
 
-interface MobileCalendarState {
-    isPlainText: boolean;
-    printdate: string;
+interface ContainerState {
+    dateValue: string;
 }
 
-export class MobileCalendar extends Component<MobileCalendarProps, MobileCalendarState> {
+export default class MobileCalendarContainer extends Component<ContainerProps, ContainerState> {
+    private subscriptionHandles: number[];
 
-    constructor(props: MobileCalendarProps) {
+    constructor(props: ContainerProps) {
         super(props);
 
         this.state = {
-            isPlainText: true,
-            printdate: `${format(props.dateAttribute, this.props.formatDate)}`
+            dateValue: this.getValue(props.dateAttribute, props.mxObject) as string
         };
-        this.handleClick = this.handleClick.bind(this);
-        this.handleChange = this.handleChange.bind(this);
+        this.subscriptionHandles = [];
+        this.handleSubscriptions = this.handleSubscriptions.bind(this);
+        this.updateDate = this.updateDate.bind(this);
+        this.resetSubscriptions = this.resetSubscriptions.bind(this);
     }
 
     render() {
-        return createElement("div", {
-        },
-            createElement("div", {},
-                createElement("input", {
-                    type: "text",
-                    className: "form-control",
-                    placeholder: this.state.printdate,
-                    onClick: this.handleClick,
-                    onChange: this.handleChange,
-                    dateAttribute: this.props.dateAttribute
-                }),
-                createElement("a", {},
-                    createElement(FaCalendar, {
-                        type: null,
-                        className: "form-row",
-                        onClick: this.handleClick
-                    }))),
-            createElement("br", {}),
-            !this.state.isPlainText
-                ? createElement(InfiniteCalendar, {
-                    className: "Calendar",
-                    onSelect: (date: string) => {
+        const { mxObject } = this.props;
+        const readOnly = this.props.editable === false
+            || (mxObject && mxObject.isReadonlyAttr(this.props.dateAttribute)) || this.props.readOnly || !mxObject;
 
-                        this.setState({
-                            printdate: `${format(date, this.props.formatDate)}`,
-                            isPlainText: !this.state.isPlainText
-                        });
-                        this.props.updateDate(date);
-                    },
-                    width: this.props.width,
-                    layout: this.props.layout,
-                    height: this.props.height,
-                    showHeader: this.props.showHeader,
-                    showOverlay: this.props.showOverlay,
-                    hideYearsOnSelect: this.props.hideYearsOnSelect,
-                    todayHelperRowOffset: this.props.todayHelperRowOffset,
-                    shouldHeaderAnimate: this.props.shouldHeaderAnimate,
-                    rowHeight: this.props.rowHeight,
-                    autoFocus: this.props.autoFocus,
-                    tabIndex: this.props.tabIndex,
-                    display: this.props.display,
-                    selected: this.state.printdate
-                })
-                : null
-        );
-    }
-
-    componentWillReceiveProps(newProps: MobileCalendarProps) {
-        this.setState({
-            printdate: `${format(newProps.dateAttribute, this.props.formatDate)}`
+        return createElement(MobileCalendar, {
+            formatDate: this.props.formatDate,
+            layout: this.props.layout,
+            width: this.props.width,
+            height: this.props.height,
+            showHeader: this.props.showHeader,
+            showOverlay: this.props.showOverlay,
+            hideYearsOnSelect: this.props.hideYearsOnSelect,
+            todayHelperRowOffset: this.props.todayHelperRowOffset,
+            shouldHeaderAnimate: this.props.shouldHeaderAnimate,
+            rowHeight: this.props.rowHeight,
+            autoFocus: this.props.autoFocus,
+            tabIndex: this.props.tabIndex,
+            display: this.props.display,
+            dateAttribute: this.state.dateValue,
+            updateDate: this.updateDate,
+            readOnly
         });
     }
 
-    private handleClick() {
+    componentWillReceiveProps(newProps: ContainerProps) {
+        this.resetSubscriptions(newProps.mxObject);
+
         this.setState({
-            isPlainText: !this.state.isPlainText
+            dateValue: this.getValue(this.props.dateAttribute, newProps.mxObject)
         });
     }
 
-    handleChange(dateAttribute: string) {
+    componentWillUnmount() {
+        this.subscriptionHandles.forEach(window.mx.data.unsubscribe);
+    }
+
+    private getValue(attribute: string, mxObject?: mendix.lib.MxObject): string {
+        return mxObject ? (mxObject.get(attribute) as string) : "";
+    }
+
+    private resetSubscriptions(mxObject?: mendix.lib.MxObject) {
+        this.subscriptionHandles.forEach(window.mx.data.unsubscribe);
+
+        if (mxObject) {
+            this.subscriptionHandles.push(mx.data.subscribe({
+                callback: this.handleSubscriptions,
+                guid: mxObject.getGuid()
+            }));
+        }
+    }
+
+    private handleSubscriptions() {
+
         this.setState({
-            printdate: dateAttribute
+            dateValue: this.getValue(this.props.dateAttribute, this.props.mxObject) as string
         });
     }
 
+    private updateDate(newDate: string) {
+        this.props.mxObject.set(this.props.dateAttribute, newDate);
+    }
+
+    public static parseStyle(style = ""): { [key: string]: string } {
+        try {
+            return style.split(";").reduce<{ [key: string]: string }>((styleObject, line) => {
+                const pair = line.split(":");
+                if (pair.length === 2) {
+                    const name = pair[0].trim().replace(/(-.)/g, match => match[1].toUpperCase());
+                    styleObject[name] = pair[1].trim();
+                }
+                return styleObject;
+            }, {});
+        } catch (error) {
+            // tslint:disable-next-line no-console
+            console.log("Failed to parse style", style, error);
+        }
+
+        return {};
+    }
 }
