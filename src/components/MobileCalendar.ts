@@ -12,6 +12,8 @@ export interface MobileCalendarProps {
     date?: string;
     layout?: string;
     showHeader: boolean;
+    actionClick?: boolean;
+    showMonthsForYears: boolean;
     shouldHeaderAnimate: boolean;
     showOverlay: boolean;
     hideYearsOnSelect: boolean;
@@ -76,6 +78,7 @@ export class MobileCalendar extends Component<MobileCalendarProps, MobileCalenda
                         });
                         this.props.updateDate(date);
                     },
+                    actionClick: this.props.actionClick,
                     width: this.props.width,
                     layout: this.props.layout,
                     height: this.props.height,
@@ -88,6 +91,7 @@ export class MobileCalendar extends Component<MobileCalendarProps, MobileCalenda
                     autoFocus: this.props.autoFocus,
                     tabIndex: this.props.tabIndex,
                     display: this.props.display,
+                    showMonthsForYears: this.props.showMonthsForYears,
                     selected: this.state.printdate
                 })
                 : null

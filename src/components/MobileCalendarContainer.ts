@@ -13,6 +13,7 @@ export interface ContainerProps extends WrapperProps {
     dateAttribute: string;
     layout: string;
     showHeader: boolean;
+    showMonthsForYears: boolean;
     shouldHeaderAnimate: boolean;
     showOverlay: boolean;
     hideYearsOnSelect: boolean;
@@ -24,6 +25,7 @@ export interface ContainerProps extends WrapperProps {
     autoFocus: boolean;
     tabIndex: boolean;
     display: string;
+    actionClick: boolean;
     formatDate: string;
     selected: Date;
 }
@@ -67,7 +69,9 @@ export default class MobileCalendarContainer extends Component<ContainerProps, C
             tabIndex: this.props.tabIndex,
             display: this.props.display,
             dateAttribute: this.state.dateValue,
+            showMonthsForYears: this.props.showMonthsForYears,
             updateDate: this.updateDate,
+            actionClick: this.props.actionClick,
             readOnly
         });
     }
@@ -108,6 +112,9 @@ export default class MobileCalendarContainer extends Component<ContainerProps, C
 
     private updateDate(newDate: string) {
         this.props.mxObject.set(this.props.dateAttribute, newDate);
+        if (this.props.actionClick === true) {
+            alert(`You have selected ${newDate}`);
+        }
     }
 
     public static parseStyle(style = ""): { [key: string]: string } {

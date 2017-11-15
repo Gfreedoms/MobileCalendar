@@ -34,17 +34,22 @@
             <category>Appearance</category>
             <description>Show a list of years </description>
         </property>
+        <property key="actionClick" type="boolean" required="true" defaultValue="false">
+            <caption>Show alert after click</caption>
+            <category>Appearance</category>
+            <description>Show an alert with selected date </description>
+        </property>
         <property key="hideYearsOnSelect" type="boolean" required="true" defaultValue="true">
             <caption>Hide years on select</caption>
             <category>Appearance</category>
             <description>Whether to automatically hide the years view on select.</description>
         </property>
-        <property key="width" type="integer" defaultValue="250">
+        <property key="width" type="integer" defaultValue="300">
             <caption>Calender width</caption>
             <category>General</category>
             <description>Width of the calendar in pixels</description>
         </property>
-         <property key="height" type="integer" defaultValue="350">
+         <property key="height" type="integer" defaultValue="320">
             <caption>Calender height</caption>
             <category>General</category>
             <description>Height of the calendar in pixels</description>
