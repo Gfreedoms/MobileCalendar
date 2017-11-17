@@ -9,6 +9,7 @@ interface WrapperProps {
 }
 
 export interface ContainerProps extends WrapperProps {
+    onChangeMicroflow: string;
     editable: boolean;
     dateAttribute: string;
     layout: string;
@@ -28,6 +29,7 @@ export interface ContainerProps extends WrapperProps {
     actionClick: boolean;
     formatDate: string;
     selected: Date;
+    dateEntity: string;
 }
 
 interface ContainerState {
@@ -35,6 +37,8 @@ interface ContainerState {
 }
 
 export default class MobileCalendarContainer extends Component<ContainerProps, ContainerState> {
+    dateAttribute: string;
+    dateEntity: string;
     private subscriptionHandles: number[];
 
     constructor(props: ContainerProps) {
@@ -113,25 +117,39 @@ export default class MobileCalendarContainer extends Component<ContainerProps, C
     private updateDate(newDate: string) {
         this.props.mxObject.set(this.props.dateAttribute, newDate);
         if (this.props.actionClick === true) {
-            alert(`You have selected ${newDate}`);
-        }
+        const { onChangeMicroflow, mxObject } = this.props;
+        mx.data.get({
+            callback: (object) => {
+                this.saveDateData(mxObject, onChangeMicroflow, object[0].getGuid());
+            },
+            error: error => `${error.message}`,
+            xpath: `//${this.dateEntity}[ ${this.dateAttribute} = '${newDate}' ]`
+});
+      }
     }
 
-    public static parseStyle(style = ""): { [key: string]: string } {
-        try {
-            return style.split(";").reduce<{ [key: string]: string }>((styleObject, line) => {
-                const pair = line.split(":");
-                if (pair.length === 2) {
-                    const name = pair[0].trim().replace(/(-.)/g, match => match[1].toUpperCase());
-                    styleObject[name] = pair[1].trim();
+    private saveDateData(object: mendix.lib.MxObject, action?: string, guid?: string) {
+        mx.data.commit({
+            mxobj: object,
+            callback: () => {
+                if (action && guid) {
+                    this.executeAction(action, guid);
                 }
-                return styleObject;
-            }, {});
-        } catch (error) {
-            // tslint:disable-next-line no-console
-            console.log("Failed to parse style", style, error);
-        }
-
-        return {};
+            }
+        });
     }
+
+    private executeAction(actionName: string, guid: string) {
+        if (actionName) {
+           window.mx.ui.action(actionName, {
+                error: error =>
+                    window.mx.ui.error(`Error while executing microflow: ${actionName}: ${error.message}`),
+                params: {
+                    applyto: "selection",
+                    guids: [ guid ]
+                }
+            });
+        }
+}
+
 }

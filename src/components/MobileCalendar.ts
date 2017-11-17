@@ -67,34 +67,7 @@ export class MobileCalendar extends Component<MobileCalendarProps, MobileCalenda
                         onClick: this.handleClick
                     }))),
             createElement("br", {}),
-            !this.state.isPlainText
-                ? createElement(InfiniteCalendar, {
-                    className: "Calendar",
-                    onSelect: (date: string) => {
-
-                        this.setState({
-                            printdate: `${format(date, this.props.formatDate)}`,
-                            isPlainText: !this.state.isPlainText
-                        });
-                        this.props.updateDate(date);
-                    },
-                    actionClick: this.props.actionClick,
-                    width: this.props.width,
-                    layout: this.props.layout,
-                    height: this.props.height,
-                    showHeader: this.props.showHeader,
-                    showOverlay: this.props.showOverlay,
-                    hideYearsOnSelect: this.props.hideYearsOnSelect,
-                    todayHelperRowOffset: this.props.todayHelperRowOffset,
-                    shouldHeaderAnimate: this.props.shouldHeaderAnimate,
-                    rowHeight: this.props.rowHeight,
-                    autoFocus: this.props.autoFocus,
-                    tabIndex: this.props.tabIndex,
-                    display: this.props.display,
-                    showMonthsForYears: this.props.showMonthsForYears,
-                    selected: this.state.printdate
-                })
-                : null
+            this.DatePickerElement()
         );
     }
 
@@ -102,6 +75,39 @@ export class MobileCalendar extends Component<MobileCalendarProps, MobileCalenda
         this.setState({
             printdate: `${format(newProps.dateAttribute, this.props.formatDate)}`
         });
+    }
+
+    private DatePickerElement() {
+        if (!this.state.isPlainText) {
+            return createElement(InfiniteCalendar, {
+                className: "Calendar",
+                onSelect: (date: string) => {
+
+                    this.setState({
+                        printdate: `${format(date, this.props.formatDate)}`,
+                        isPlainText: !this.state.isPlainText
+                    });
+                    this.props.updateDate(date);
+                },
+                actionClick: this.props.actionClick,
+                width: this.props.width,
+                layout: this.props.layout,
+                height: this.props.height,
+                showHeader: this.props.showHeader,
+                showOverlay: this.props.showOverlay,
+                hideYearsOnSelect: this.props.hideYearsOnSelect,
+                todayHelperRowOffset: this.props.todayHelperRowOffset,
+                shouldHeaderAnimate: this.props.shouldHeaderAnimate,
+                rowHeight: this.props.rowHeight,
+                autoFocus: this.props.autoFocus,
+                tabIndex: this.props.tabIndex,
+                display: this.props.display,
+                showMonthsForYears: this.props.showMonthsForYears,
+                selected: this.state.printdate
+            });
+        }
+
+        return null;
     }
 
     private handleClick() {
