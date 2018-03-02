@@ -10,7 +10,7 @@ This is a mobile friendly date picker
 * **Mobile-friendly** – Silky smooth scrolling on mobile
 
 ## Dependencies
-Mendix 7.6.0
+Mendix 7.11.0
 
 ## Demo project
 ---
@@ -32,7 +32,7 @@ Place the widget in a data view.
 
  - Model Configuration
 
-![Data source](/assets/EntitySource.png)
+![Data source](/assets/EntitySources.png)
  - On `Calendar entity` option of the `Data source` tab, browse and 
  select the "entity" you want.
  

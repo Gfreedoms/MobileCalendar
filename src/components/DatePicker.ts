@@ -1,11 +1,12 @@
 import { Component, createElement } from "react";
 import InfiniteCalendar from "react-infinite-calendar";
 import "react-infinite-calendar/styles.css";
-import "../ui/MobileCalendar.scss";
+
+import "../ui/DatePicker.scss";
 import * as format from "date-fns/format";
 import * as FaCalendar from "react-icons/lib/fa/calendar";
 
-export interface MobileCalendarProps {
+export interface DatePickerProps {
     className?: string;
     readOnly?: boolean;
     style?: object;
@@ -30,14 +31,14 @@ export interface MobileCalendarProps {
     updateDate: (date: string) => void;
 }
 
-interface MobileCalendarState {
+interface DatePickerState {
     isPlainText: boolean;
     printdate: string;
 }
 
-export class MobileCalendar extends Component<MobileCalendarProps, MobileCalendarState> {
+export class DatePicker extends Component<DatePickerProps, DatePickerState> {
 
-    constructor(props: MobileCalendarProps) {
+    constructor(props: DatePickerProps) {
         super(props);
 
         this.state = {
@@ -52,7 +53,7 @@ export class MobileCalendar extends Component<MobileCalendarProps, MobileCalenda
         return createElement("div", {
         },
             createElement("div", {},
-                createElement("input", {
+                createElement("input" as any, {
                     type: "text",
                     className: "form-control",
                     placeholder: this.state.printdate,
@@ -67,17 +68,17 @@ export class MobileCalendar extends Component<MobileCalendarProps, MobileCalenda
                         onClick: this.handleClick
                     }))),
             createElement("br", {}),
-            this.DatePickerElement()
+            this.datePickerElement()
         );
     }
 
-    componentWillReceiveProps(newProps: MobileCalendarProps) {
+    componentWillReceiveProps(newProps: DatePickerProps) {
         this.setState({
             printdate: `${format(newProps.dateAttribute, this.props.formatDate)}`
         });
     }
 
-    private DatePickerElement() {
+    private datePickerElement() {
         if (!this.state.isPlainText) {
             return createElement(InfiniteCalendar, {
                 className: "Calendar",

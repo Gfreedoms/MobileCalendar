@@ -1,5 +1,5 @@
 import { Component, createElement } from "react";
-import { MobileCalendar } from "./MobileCalendar";
+import { DatePicker } from "./DatePicker";
 
 interface WrapperProps {
     class: string;
@@ -36,9 +36,9 @@ interface ContainerState {
     dateValue: string;
 }
 
-export default class MobileCalendarContainer extends Component<ContainerProps, ContainerState> {
-    dateAttribute: string;
-    dateEntity: string;
+export default class DatePickerContainer extends Component<ContainerProps, ContainerState> {
+    private dateAttribute: string;
+    private dateEntity: string;
     private subscriptionHandles: number[];
 
     constructor(props: ContainerProps) {
@@ -47,6 +47,9 @@ export default class MobileCalendarContainer extends Component<ContainerProps, C
         this.state = {
             dateValue: this.getValue(props.dateAttribute, props.mxObject) as string
         };
+
+        this.dateAttribute = "";
+        this.dateEntity = "";
         this.subscriptionHandles = [];
         this.handleSubscriptions = this.handleSubscriptions.bind(this);
         this.updateDate = this.updateDate.bind(this);
@@ -58,7 +61,7 @@ export default class MobileCalendarContainer extends Component<ContainerProps, C
         const readOnly = this.props.editable === false
             || (mxObject && mxObject.isReadonlyAttr(this.props.dateAttribute)) || this.props.readOnly || !mxObject;
 
-        return createElement(MobileCalendar, {
+        return createElement(DatePicker as any, {
             formatDate: this.props.formatDate,
             layout: this.props.layout,
             width: this.props.width,

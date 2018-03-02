@@ -1,6 +1,6 @@
 {
-  "name": "mobile-calendar",
-  "widgetName": "MobileCalendar",
+  "name": "date-picker",
+  "widgetName": "DatePicker",
   "version": "0.0.1",
   "description": "This widget lets users select a date to input into the text box using the popup calendar .",
   "scripts": {
