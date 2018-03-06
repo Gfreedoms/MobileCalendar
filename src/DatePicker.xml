@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<widget id="com.mendix.widget.custom.mobilecalendar.MobileCalendar" needsEntityContext="true" offlineCapable="true" xmlns="http://www.mendix.com/widget/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../../../../../xsd/widget.xsd">
+<widget id="com.mendix.widget.custom.datepicker.DatePicker" needsEntityContext="true" offlineCapable="true" xmlns="http://www.mendix.com/widget/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../../../../../xsd/widget.xsd">
     <name>DatePicker</name>
     <description></description>
     <icon>
@@ -30,7 +30,7 @@
             <description>Show/hide the month overlay when scrolling</description>
         </property>
         <property key="showMonthsForYears" type="boolean" required="true" defaultValue="false">
-            <caption>Show  month for years</caption>
+            <caption>Show month for years</caption>
             <category>Appearance</category>
             <description>Show a list of years </description>
         </property>

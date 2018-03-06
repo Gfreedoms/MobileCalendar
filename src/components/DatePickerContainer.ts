@@ -12,20 +12,16 @@ export interface ContainerProps extends WrapperProps {
     onChangeMicroflow: string;
     editable: boolean;
     dateAttribute: string;
-    layout: string;
     showHeader: boolean;
     showMonthsForYears: boolean;
-    shouldHeaderAnimate: boolean;
     showOverlay: boolean;
     hideYearsOnSelect: boolean;
     width: number;
     height: number;
-    overscanMonthCount: number;
     todayHelperRowOffset: number;
     rowHeight: number;
     autoFocus: boolean;
     tabIndex: boolean;
-    display: string;
     actionClick: boolean;
     formatDate: string;
     selected: Date;
@@ -62,24 +58,21 @@ export default class DatePickerContainer extends Component<ContainerProps, Conta
             || (mxObject && mxObject.isReadonlyAttr(this.props.dateAttribute)) || this.props.readOnly || !mxObject;
 
         return createElement(DatePicker as any, {
-            formatDate: this.props.formatDate,
-            layout: this.props.layout,
-            width: this.props.width,
-            height: this.props.height,
-            showHeader: this.props.showHeader,
-            showOverlay: this.props.showOverlay,
-            hideYearsOnSelect: this.props.hideYearsOnSelect,
-            todayHelperRowOffset: this.props.todayHelperRowOffset,
-            shouldHeaderAnimate: this.props.shouldHeaderAnimate,
-            rowHeight: this.props.rowHeight,
-            autoFocus: this.props.autoFocus,
-            tabIndex: this.props.tabIndex,
-            display: this.props.display,
-            dateAttribute: this.state.dateValue,
-            showMonthsForYears: this.props.showMonthsForYears,
-            updateDate: this.updateDate,
             actionClick: this.props.actionClick,
-            readOnly
+            autoFocus: this.props.autoFocus,
+            dateAttribute: this.state.dateValue,
+            formatDate: this.props.formatDate,
+            height: this.props.height,
+            hideYearsOnSelect: this.props.hideYearsOnSelect,
+            readOnly,
+            rowHeight: this.props.rowHeight,
+            showHeader: this.props.showHeader,
+            showMonthsForYears: this.props.showMonthsForYears,
+            showOverlay: this.props.showOverlay,
+            tabIndex: this.props.tabIndex,
+            todayHelperRowOffset: this.props.todayHelperRowOffset,
+            updateDate: this.updateDate,
+            width: this.props.width
         });
     }
 
@@ -111,7 +104,6 @@ export default class DatePickerContainer extends Component<ContainerProps, Conta
     }
 
     private handleSubscriptions() {
-
         this.setState({
             dateValue: this.getValue(this.props.dateAttribute, this.props.mxObject) as string
         });
@@ -119,40 +111,40 @@ export default class DatePickerContainer extends Component<ContainerProps, Conta
 
     private updateDate(newDate: string) {
         this.props.mxObject.set(this.props.dateAttribute, newDate);
+
         if (this.props.actionClick === true) {
-        const { onChangeMicroflow, mxObject } = this.props;
-        mx.data.get({
-            callback: (object) => {
-                this.saveDateData(mxObject, onChangeMicroflow, object[0].getGuid());
-            },
-            error: error => `${error.message}`,
-            xpath: `//${this.dateEntity}[ ${this.dateAttribute} = '${newDate}' ]`
-});
-      }
+            const { onChangeMicroflow, mxObject } = this.props;
+            mx.data.get({
+                callback: (object) => {
+                    this.saveDate(mxObject, onChangeMicroflow, object[0].getGuid());
+                },
+                error: error => `${error.message}`,
+                xpath: `//${this.dateEntity}[ ${this.dateAttribute} = '${newDate}' ]`
+            });
+        }
     }
 
-    private saveDateData(object: mendix.lib.MxObject, action?: string, guid?: string) {
+    private saveDate(object: mendix.lib.MxObject, action?: string, guid?: string) {
         mx.data.commit({
-            mxobj: object,
             callback: () => {
                 if (action && guid) {
-                    this.executeAction(action, guid);
+                    this.executeMicroflow(action, guid);
                 }
-            }
+            },
+            mxobj: object
         });
     }
 
-    private executeAction(actionName: string, guid: string) {
-        if (actionName) {
-           window.mx.ui.action(actionName, {
+    private executeMicroflow(microflow: string, guid: string) {
+        if (microflow) {
+            window.mx.ui.action(microflow, {
                 error: error =>
-                    window.mx.ui.error(`Error while executing microflow: ${actionName}: ${error.message}`),
+                    window.mx.ui.error(`Error while executing microflow: ${microflow}: ${error.message}`),
                 params: {
                     applyto: "selection",
                     guids: [ guid ]
                 }
             });
         }
-}
-
+    }
 }

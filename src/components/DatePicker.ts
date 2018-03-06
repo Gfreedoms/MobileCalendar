@@ -11,11 +11,9 @@ export interface DatePickerProps {
     readOnly?: boolean;
     style?: object;
     date?: string;
-    layout?: string;
     showHeader: boolean;
     actionClick?: boolean;
     showMonthsForYears: boolean;
-    shouldHeaderAnimate: boolean;
     showOverlay: boolean;
     hideYearsOnSelect: boolean;
     width: number;
@@ -24,16 +22,15 @@ export interface DatePickerProps {
     rowHeight: number;
     autoFocus: boolean;
     tabIndex: boolean;
-    display: string;
     dateAttribute: string;
     selected?: Date;
     formatDate: string;
     updateDate: (date: string) => void;
 }
 
-interface DatePickerState {
+export interface DatePickerState {
     isPlainText: boolean;
-    printdate: string;
+    printDate: string;
 }
 
 export class DatePicker extends Component<DatePickerProps, DatePickerState> {
@@ -43,29 +40,28 @@ export class DatePicker extends Component<DatePickerProps, DatePickerState> {
 
         this.state = {
             isPlainText: true,
-            printdate: `${format(props.dateAttribute, this.props.formatDate)}`
+            printDate: `${format(props.dateAttribute, this.props.formatDate)}`
         };
         this.handleClick = this.handleClick.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
 
     render() {
-        return createElement("div", {
-        },
+        return createElement("div", {},
             createElement("div", {},
                 createElement("input" as any, {
-                    type: "text",
-                    className: "form-control",
-                    placeholder: this.state.printdate,
-                    onClick: this.handleClick,
+                    className: "widget-date-picker-form-control",
+                    dateAttribute: this.props.dateAttribute,
                     onChange: this.handleChange,
-                    dateAttribute: this.props.dateAttribute
+                    onClick: this.handleClick,
+                    placeholder: this.state.printDate,
+                    type: "text"
                 }),
                 createElement("a", {},
                     createElement(FaCalendar, {
-                        type: null,
-                        className: "form-row",
-                        onClick: this.handleClick
+                        className: "widget-date-picker-form-row",
+                        onClick: this.handleClick,
+                        type: null
                     }))),
             createElement("br", {}),
             this.datePickerElement()
@@ -74,7 +70,7 @@ export class DatePicker extends Component<DatePickerProps, DatePickerState> {
 
     componentWillReceiveProps(newProps: DatePickerProps) {
         this.setState({
-            printdate: `${format(newProps.dateAttribute, this.props.formatDate)}`
+            printDate: `${format(newProps.dateAttribute, this.props.formatDate)}`
         });
     }
 
@@ -83,28 +79,29 @@ export class DatePicker extends Component<DatePickerProps, DatePickerState> {
             return createElement(InfiniteCalendar, {
                 className: "Calendar",
                 onSelect: (date: string) => {
-
                     this.setState({
-                        printdate: `${format(date, this.props.formatDate)}`,
-                        isPlainText: !this.state.isPlainText
+                        isPlainText: !this.state.isPlainText,
+                        printDate: `${format(date, this.props.formatDate)}`
                     });
+
                     this.props.updateDate(date);
                 },
-                actionClick: this.props.actionClick,
-                width: this.props.width,
-                layout: this.props.layout,
-                height: this.props.height,
-                showHeader: this.props.showHeader,
-                showOverlay: this.props.showOverlay,
-                hideYearsOnSelect: this.props.hideYearsOnSelect,
-                todayHelperRowOffset: this.props.todayHelperRowOffset,
-                shouldHeaderAnimate: this.props.shouldHeaderAnimate,
-                rowHeight: this.props.rowHeight,
-                autoFocus: this.props.autoFocus,
-                tabIndex: this.props.tabIndex,
-                display: this.props.display,
-                showMonthsForYears: this.props.showMonthsForYears,
-                selected: this.state.printdate
+                ...this.props
+                // actionClick: this.props.actionClick,
+                // width: this.props.width,
+                // layout: this.props.layout,
+                // height: this.props.height,
+                // showHeader: this.props.showHeader,
+                // showOverlay: this.props.showOverlay,
+                // hideYearsOnSelect: this.props.hideYearsOnSelect,
+                // todayHelperRowOffset: this.props.todayHelperRowOffset,
+                // shouldHeaderAnimate: this.props.shouldHeaderAnimate,
+                // rowHeight: this.props.rowHeight,
+                // autoFocus: this.props.autoFocus,
+                // tabIndex: this.props.tabIndex,
+                // display: this.props.display,
+                // showMonthsForYears: this.props.showMonthsForYears,
+                // selected: this.state.printDate
             });
         }
 
@@ -117,9 +114,9 @@ export class DatePicker extends Component<DatePickerProps, DatePickerState> {
         });
     }
 
-    handleChange(dateAttribute: string) {
+    private handleChange(dateAttribute: string) {
         this.setState({
-            printdate: dateAttribute
+            printDate: dateAttribute
         });
     }
 

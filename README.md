@@ -1,5 +1,5 @@
-# Mobile Calendar
-This is a mobile friendly date picker
+# Date Picker
+A mobile friendly date picker  
 
 ## Features
 ---
@@ -14,25 +14,21 @@ Mendix 7.11.0
 
 ## Demo project
 ---
-https://calendarmobile.mxapps.io
+https://date-picker.mxapps.io/
 
 ![Demo](assets/Demo.gif)
 
 ## Usage
 Place the widget in a data view.
 
-
-
 ![General](assets/General.PNG)
-
-
 
 ### Data source configuration
 ---
 
  - Model Configuration
 
-![Data source](/assets/EntitySources.png)
+![Data source](/assets/EntitySource.png)
  - On `Calendar entity` option of the `Data source` tab, browse and 
  select the "entity" you want.
  
@@ -42,10 +38,7 @@ Place the widget in a data view.
  select the attribute on the tag entity selected above. 
 
 ## Issues, suggestions and feature requests
-We are actively maintaining this widget, please report any issues or suggestion for improvement at https://github.com/Gfreedoms/MobileCalendar/issues
+We are actively maintaining this widget, please report any issues or suggestion for improvement at https://github.com/Gfreedoms/DatePicker/issues
 
 ## Development and contribution
 Please follow [development guide](/development.md). 
-
-## License
-* Mobile Calendar *is available under the MIT License.
