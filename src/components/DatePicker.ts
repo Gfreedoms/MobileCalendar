@@ -1,10 +1,9 @@
 import { Component, createElement } from "react";
-import InfiniteCalendar from "react-infinite-calendar";
-import "react-infinite-calendar/styles.css";
-
 import "../ui/DatePicker.scss";
+
+import { ReactInfiniteCalendar } from "./ReactInfiniteCalendar";
+import { DateInput } from "./DateInput";
 import * as format from "date-fns/format";
-import * as FaCalendar from "react-icons/lib/fa/calendar";
 
 export interface DatePickerProps {
     className?: string;
@@ -12,7 +11,7 @@ export interface DatePickerProps {
     style?: object;
     date?: string;
     showHeader: boolean;
-    actionClick?: boolean;
+    actionClick: boolean;
     showMonthsForYears: boolean;
     showOverlay: boolean;
     hideYearsOnSelect: boolean;
@@ -40,7 +39,7 @@ export class DatePicker extends Component<DatePickerProps, DatePickerState> {
 
         this.state = {
             isPlainText: true,
-            printDate: `${format(props.dateAttribute, this.props.formatDate)}`
+            printDate: `12/05/1994`
         };
         this.handleClick = this.handleClick.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -48,23 +47,9 @@ export class DatePicker extends Component<DatePickerProps, DatePickerState> {
 
     render() {
         return createElement("div", {},
-            createElement("div", {},
-                createElement("input" as any, {
-                    className: "widget-date-picker-form-control",
-                    dateAttribute: this.props.dateAttribute,
-                    onChange: this.handleChange,
-                    onClick: this.handleClick,
-                    placeholder: this.state.printDate,
-                    type: "text"
-                }),
-                createElement("a", {},
-                    createElement(FaCalendar, {
-                        className: "widget-date-picker-form-row",
-                        onClick: this.handleClick,
-                        type: null
-                    }))),
+            this.createDateInput(),
             createElement("br", {}),
-            this.datePickerElement()
+            this.createCalender()
         );
     }
 
@@ -74,38 +59,38 @@ export class DatePicker extends Component<DatePickerProps, DatePickerState> {
         });
     }
 
-    private datePickerElement() {
-        if (!this.state.isPlainText) {
-            return createElement(InfiniteCalendar, {
-                className: "Calendar",
-                onSelect: (date: string) => {
-                    this.setState({
-                        isPlainText: !this.state.isPlainText,
-                        printDate: `${format(date, this.props.formatDate)}`
-                    });
-
-                    this.props.updateDate(date);
-                },
-                ...this.props
-                // actionClick: this.props.actionClick,
-                // width: this.props.width,
-                // layout: this.props.layout,
-                // height: this.props.height,
-                // showHeader: this.props.showHeader,
-                // showOverlay: this.props.showOverlay,
-                // hideYearsOnSelect: this.props.hideYearsOnSelect,
-                // todayHelperRowOffset: this.props.todayHelperRowOffset,
-                // shouldHeaderAnimate: this.props.shouldHeaderAnimate,
-                // rowHeight: this.props.rowHeight,
-                // autoFocus: this.props.autoFocus,
-                // tabIndex: this.props.tabIndex,
-                // display: this.props.display,
-                // showMonthsForYears: this.props.showMonthsForYears,
-                // selected: this.state.printDate
-            });
-        }
-
-        return null;
+    private createDateInput() {
+        return createElement(DateInput, {
+            dateAttribute: this.props.dateAttribute,
+            onChange: this.handleChange,
+            onClick: this.handleClick,
+            printDate: this.state.printDate
+        });
+    }
+    private createCalender() {
+        return createElement(ReactInfiniteCalendar, {
+            actionClick: this.props.actionClick,
+            autoFocus: this.props.autoFocus,
+            className: "Calendar",
+            height: this.props.height,
+            hideYearsOnSelect: this.props.hideYearsOnSelect,
+            onSelect: (date: string) => {
+                this.setState({
+                    isPlainText: !this.state.isPlainText,
+                    printDate: `${format(date, this.props.formatDate)}`
+                });
+                this.props.updateDate(date);
+            },
+            printDate: this.state.printDate,
+            rowHeight: this.props.rowHeight,
+            showCalendar: this.state.isPlainText,
+            showHeader: this.props.showHeader,
+            showMonthsForYears: this.props.showMonthsForYears,
+            showOverlay: this.props.showOverlay,
+            tabIndex: this.props.tabIndex,
+            todayHelperRowOffset: this.props.todayHelperRowOffset,
+            width: this.props.width
+        });
     }
 
     private handleClick() {
@@ -119,5 +104,4 @@ export class DatePicker extends Component<DatePickerProps, DatePickerState> {
             printDate: dateAttribute
         });
     }
-
 }

@@ -11,7 +11,7 @@ describe("Alert", () => {
     beforeEach(() => {
         defaultProps = {
             bootstrapStyle: "danger",
-            className: "widget-camera",
+            className: "widget-date-picker",
             message
         };
     });

@@ -14,8 +14,7 @@ export class preview extends Component<ContainerProps, DatePickerState> {
 
     render() {
         return createElement(DatePicker as any, {
-            ...this.props as ContainerProps,
-            onClickAction: () => { return; }
+            ...this.props as ContainerProps
         });
     }
 }
