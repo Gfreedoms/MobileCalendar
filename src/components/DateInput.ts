@@ -2,8 +2,7 @@ import { Component, createElement } from "react";
 import * as FaCalendar from "react-icons/lib/fa/calendar";
 
 export interface DateInputProps {
-    dateAttribute: string;
-    onChange: (value: string) => void;
+    dateattribute: string;
     onClick: () => void;
     printDate: string;
 }
@@ -13,8 +12,7 @@ export class DateInput extends Component<DateInputProps , {}> {
         return createElement("div", {},
             createElement("input", {
                 className: "widget-date-picker-form",
-                dateAttribute: this.props.dateAttribute,
-                onChange: this.props.onChange,
+                dateattribute: this.props.dateattribute,
                 onClick: this.props.onClick,
                 placeholder: this.props.printDate,
                 type: "text"

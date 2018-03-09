@@ -20,7 +20,7 @@ describe("DatePicker", () => {
         showHeader: true,
         showMonthsForYears: true,
         showOverlay: true,
-        tabIndex: true,
+        tabIndex: 1,
         todayHelperRowOffset: 4,
         width: 320
     };
@@ -52,10 +52,9 @@ describe("DatePicker", () => {
 
     it("should not render when 'showCalendar' is false", () => {
         const NoCalendar = shallowRenderCalendar(defaultProps);
+
         NoCalendar.setProps({ showCalendar: false });
 
-        expect(NoCalendar).toBeElement(
-            createElement("div", {})
-        );
+        expect(NoCalendar).toBeElement(createElement("div", {}));
     });
 });

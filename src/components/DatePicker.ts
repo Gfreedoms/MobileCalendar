@@ -20,11 +20,10 @@ export interface DatePickerProps {
     todayHelperRowOffset: number;
     rowHeight: number;
     autoFocus: boolean;
-    tabIndex: boolean;
-    dateAttribute: string;
+    tabIndex: number;
+    dateattribute: string;
     selected?: Date;
     formatDate: string;
-    updateDate: (date: string) => void;
 }
 
 export interface DatePickerState {
@@ -42,7 +41,7 @@ export class DatePicker extends Component<DatePickerProps, DatePickerState> {
             printDate: `12/05/1994`
         };
         this.handleClick = this.handleClick.bind(this);
-        this.handleChange = this.handleChange.bind(this);
+        // this.handleChange = this.handleChange.bind(this);
     }
 
     render() {
@@ -53,16 +52,9 @@ export class DatePicker extends Component<DatePickerProps, DatePickerState> {
         );
     }
 
-    componentWillReceiveProps(newProps: DatePickerProps) {
-        this.setState({
-            printDate: `${format(newProps.dateAttribute, this.props.formatDate)}`
-        });
-    }
-
     private createDateInput() {
         return createElement(DateInput, {
-            dateAttribute: this.props.dateAttribute,
-            onChange: this.handleChange,
+            dateattribute: this.props.dateattribute,
             onClick: this.handleClick,
             printDate: this.state.printDate
         });
@@ -79,7 +71,6 @@ export class DatePicker extends Component<DatePickerProps, DatePickerState> {
                     isPlainText: !this.state.isPlainText,
                     printDate: `${format(date, this.props.formatDate)}`
                 });
-                this.props.updateDate(date);
             },
             printDate: this.state.printDate,
             rowHeight: this.props.rowHeight,
@@ -96,12 +87,6 @@ export class DatePicker extends Component<DatePickerProps, DatePickerState> {
     private handleClick() {
         this.setState({
             isPlainText: !this.state.isPlainText
-        });
-    }
-
-    private handleChange(dateAttribute: string) {
-        this.setState({
-            printDate: dateAttribute
         });
     }
 }

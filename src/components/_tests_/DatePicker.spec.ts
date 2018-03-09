@@ -1,4 +1,4 @@
-import { shallow } from "enzyme";
+import { mount, shallow } from "enzyme";
 import { createElement } from "react";
 
 import { DatePicker, DatePickerProps , DatePickerState } from "../DatePicker";
@@ -7,24 +7,22 @@ import { ReactInfiniteCalendar } from "../ReactInfiniteCalendar";
 
 describe("DatePicker", () => {
     const shallowRenderDatePicker = (props: DatePickerProps) => shallow(createElement(DatePicker, props));
-    // const fullRenderDatePicker = (props: DatePickerProps) => mount(createElement(DatePicker, props));
+    const fullRenderDatePicker = (props: DatePickerProps) => mount(createElement(DatePicker, props));
     const defaultProps: DatePickerProps = {
         actionClick: false,
-        dateAttribute: "calender",
-        formatDate: "DD/MM/YYYY",
-        width: 320,
-        // tslint:disable-next-line:object-literal-sort-keys
-        height: 300,
-        showHeader: true,
-        showOverlay: true,
-        hideYearsOnSelect: true,
-        todayHelperRowOffset: 4,
-        rowHeight: 56,
         autoFocus: true,
-        tabIndex: true,
+        dateattribute: "calender",
+        formatDate: "DD/MM/YYYY",
+        height: 300,
+        hideYearsOnSelect: true,
+        rowHeight: 56,
+        selected: new Date(),
+        showHeader: true,
         showMonthsForYears: false,
-        updateDate: jasmine.any(Function),
-        selected: new Date()
+        showOverlay: true,
+        tabIndex: 1,
+        todayHelperRowOffset: 4,
+        width: 320
     };
 
     const defaultState: DatePickerState = {
@@ -34,11 +32,11 @@ describe("DatePicker", () => {
 
     it("should render the structure correctly", () => {
         const renderDatePicker = shallowRenderDatePicker(defaultProps);
+
         expect(renderDatePicker).toBeElement(
             createElement("div", {},
                 createElement(DateInput, {
-                    dateAttribute: defaultProps.dateAttribute,
-                    onChange: jasmine.any(Function),
+                    dateattribute: defaultProps.dateattribute,
                     onClick: jasmine.any(Function),
                     printDate: defaultState.printDate
                 }),
@@ -64,22 +62,26 @@ describe("DatePicker", () => {
         );
     });
 
-    xit("should respond to onclick events", () => {
-        const renderDatePicker = shallowRenderDatePicker(defaultProps);
+    it("should respond to onclick events", () => {
+        const renderDatePicker = fullRenderDatePicker(defaultProps);
         const DatePickerInstance = renderDatePicker.instance() as any;
         const onClick = spyOn(DatePickerInstance, "handleClick").and.callThrough();
-        // tslint:disable-next-line:no-console
-        // console.log(renderDatePicker.html());
-        // onChange.stimulate("click");
-        // const a = renderDatePicker.find(".widget-date-picker-form");
-        renderDatePicker.find("input").simulate("click");
-        // tslint:disable-next-line:no-console
+        const input = renderDatePicker.find("input").simulate("click");
+
+        input.simulate("click");
 
         expect(onClick).toHaveBeenCalled();
-
     });
 
-    it("should respond to onChange events", () => {
-        //
+    it("should select a date from the calendar", () => {
+        const renderDatePicker = fullRenderDatePicker(defaultProps);
+        const input = renderDatePicker.find("input").simulate("click");
+        input.simulate("click");
+
+        renderDatePicker.find(".Cal__Day__enabled").first().simulate("click");
+
+        const newDate = renderDatePicker.find("input").prop("placeholder");
+
+        expect(newDate).toContain("01/09/1994");
     });
 });

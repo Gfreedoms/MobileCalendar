@@ -13,7 +13,7 @@ export interface InfiniteCalendarProps {
     todayHelperRowOffset: number;
     rowHeight: number;
     autoFocus: boolean;
-    tabIndex: boolean;
+    tabIndex: number;
     showMonthsForYears: boolean;
     printDate?: string;
     onSelect: (date: string) => void;

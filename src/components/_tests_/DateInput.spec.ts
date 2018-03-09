@@ -7,8 +7,7 @@ import { DateInput, DateInputProps } from "../DateInput";
 describe("DatePicker", () => {
     const shallowRenderDatePicker = (props: DateInputProps) => shallow(createElement(DateInput, props));
     const defaultProps: DateInputProps = {
-        dateAttribute: "date",
-        onChange: jasmine.createSpy("change"),
+        dateattribute: "date",
         onClick: jasmine.createSpy("click"),
         printDate: "12/05/1994"
     };
@@ -20,8 +19,7 @@ describe("DatePicker", () => {
             createElement("div", {},
                 createElement("input", {
                     className: "widget-date-picker-form",
-                    dateAttribute: defaultProps.dateAttribute,
-                    onChange: defaultProps.onChange,
+                    dateattribute: defaultProps.dateattribute,
                     onClick: defaultProps.onClick,
                     placeholder: defaultProps.printDate,
                     type: "text"
@@ -39,7 +37,8 @@ describe("DatePicker", () => {
     it("should respond to onclick events", () => {
         const createDate = shallowRenderDatePicker(defaultProps);
 
-        createDate.simulate("click");
+        createDate.find("input").simulate("click");
+
         expect(defaultProps.onClick).toHaveBeenCalled();
     });
 });

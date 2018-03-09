@@ -11,7 +11,7 @@
             <category>Data Source</category>
             <description>The entity which the calendar will receive </description>
         </property>
-        <property key="dateAttribute" type="attribute" required="true" >
+        <property key="dateattribute" type="attribute" required="true" >
             <caption>Calendar attribute</caption>
             <category>Data Source</category>
             <description>The attribute that holds the date</description>
@@ -75,7 +75,7 @@
             <category>General</category>
             <description>Whether the Calendar root should be auto-focused when it mounts</description>
         </property>
-        <property key="tabIndex" type="boolean" defaultValue="true">
+        <property key="tabIndex" type="integer" defaultValue="1">
             <caption>Tab index</caption>
             <category>General</category>
             <description>Tab index of the calendar</description>
