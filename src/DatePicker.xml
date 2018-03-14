@@ -11,7 +11,7 @@
             <category>Data Source</category>
             <description>The entity which the calendar will receive </description>
         </property>
-        <property key="dateattribute" type="attribute" required="true" >
+        <property key="attribute" type="attribute" required="true" >
             <caption>Calendar attribute</caption>
             <category>Data Source</category>
             <description>The attribute that holds the date</description>

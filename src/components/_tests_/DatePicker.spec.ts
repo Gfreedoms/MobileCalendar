@@ -10,8 +10,8 @@ describe("DatePicker", () => {
     const fullRenderDatePicker = (props: DatePickerProps) => mount(createElement(DatePicker, props));
     const defaultProps: DatePickerProps = {
         actionClick: false,
+        attribute: "calender",
         autoFocus: true,
-        dateattribute: "calender",
         formatDate: "DD/MM/YYYY",
         height: 300,
         hideYearsOnSelect: true,
@@ -27,7 +27,7 @@ describe("DatePicker", () => {
 
     const defaultState: DatePickerState = {
         isPlainText: true,
-        printDate: "12/05/1994"
+        printDate: ""
     };
 
     it("should render the structure correctly", () => {
@@ -36,7 +36,7 @@ describe("DatePicker", () => {
         expect(renderDatePicker).toBeElement(
             createElement("div", {},
                 createElement(DateInput, {
-                    dateattribute: defaultProps.dateattribute,
+                    attribute: defaultProps.attribute,
                     onClick: jasmine.any(Function),
                     printDate: defaultState.printDate
                 }),
@@ -82,6 +82,6 @@ describe("DatePicker", () => {
 
         const newDate = renderDatePicker.find("input").prop("placeholder");
 
-        expect(newDate).toContain("01/09/1994");
+        expect(newDate).toContain("01/01/2018");
     });
 });

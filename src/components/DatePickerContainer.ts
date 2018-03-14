@@ -11,7 +11,7 @@ interface WrapperProps {
 export interface ContainerProps extends WrapperProps {
     onChangeMicroflow: string;
     editable: boolean;
-    dateattribute: string;
+    attribute: string;
     showHeader: boolean;
     showMonthsForYears: boolean;
     showOverlay: boolean;
@@ -33,7 +33,7 @@ interface ContainerState {
 }
 
 export default class DatePickerContainer extends Component<ContainerProps, ContainerState> {
-    private dateattribute: string;
+    private attribute: string;
     private dateEntity: string;
     private subscriptionHandles: number[];
 
@@ -41,10 +41,10 @@ export default class DatePickerContainer extends Component<ContainerProps, Conta
         super(props);
 
         this.state = {
-            dateValue: this.getValue(props.dateattribute, props.mxObject) as string
+            dateValue: this.getValue(props.attribute, props.mxObject) as string
         };
 
-        this.dateattribute = "";
+        this.attribute = "";
         this.dateEntity = "";
         this.subscriptionHandles = [];
         this.handleSubscriptions = this.handleSubscriptions.bind(this);
@@ -54,13 +54,15 @@ export default class DatePickerContainer extends Component<ContainerProps, Conta
 
     render() {
         const { mxObject } = this.props;
-        const readOnly = this.props.editable === false
-            || (mxObject && mxObject.isReadonlyAttr(this.props.dateattribute)) || this.props.readOnly || !mxObject;
+        const readOnly = !this.props.editable
+            || (mxObject && mxObject.isReadonlyAttr(this.props.attribute))
+            || this.props.readOnly
+            || !mxObject;
 
         return createElement(DatePicker as any, {
             actionClick: this.props.actionClick,
+            attribute: this.state.dateValue,
             autoFocus: this.props.autoFocus,
-            dateattribute: this.state.dateValue,
             formatDate: this.props.formatDate,
             height: this.props.height,
             hideYearsOnSelect: this.props.hideYearsOnSelect,
@@ -80,7 +82,7 @@ export default class DatePickerContainer extends Component<ContainerProps, Conta
         this.resetSubscriptions(newProps.mxObject);
 
         this.setState({
-            dateValue: this.getValue(this.props.dateattribute, newProps.mxObject)
+            dateValue: this.getValue(this.props.attribute, newProps.mxObject)
         });
     }
 
@@ -105,12 +107,12 @@ export default class DatePickerContainer extends Component<ContainerProps, Conta
 
     private handleSubscriptions() {
         this.setState({
-            dateValue: this.getValue(this.props.dateattribute, this.props.mxObject) as string
+            dateValue: this.getValue(this.props.attribute, this.props.mxObject) as string
         });
     }
 
     private updateDate(newDate: string) {
-        this.props.mxObject.set(this.props.dateattribute, newDate);
+        this.props.mxObject.set(this.props.attribute, newDate);
 
         if (this.props.actionClick === true) {
             const { onChangeMicroflow, mxObject } = this.props;
@@ -119,7 +121,7 @@ export default class DatePickerContainer extends Component<ContainerProps, Conta
                     this.saveDate(mxObject, onChangeMicroflow, object[0].getGuid());
                 },
                 error: error => `${error.message}`,
-                xpath: `//${this.dateEntity}[ ${this.dateattribute} = '${newDate}' ]`
+                xpath: `//${this.dateEntity}[ ${this.attribute} = '${newDate}' ]`
             });
         }
     }

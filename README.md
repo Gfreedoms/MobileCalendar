@@ -4,7 +4,6 @@ A mobile friendly date picker
 ## Features
 ---
  **Infinite scroll** – Just keep scrollin', just keep scrollin'
-* **Customizeable** – Customize to the date format of your choice.
 * **Year selection** – For rapidly jumping from year to year
 * **Keyboard support** – ⬆️ ⬇️ ⬆️ ⬇️ ⬅️ ➡️ ⬅️ ➡️ ↩️
 * **Mobile-friendly** – Silky smooth scrolling on mobile

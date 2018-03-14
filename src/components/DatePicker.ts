@@ -21,7 +21,7 @@ export interface DatePickerProps {
     rowHeight: number;
     autoFocus: boolean;
     tabIndex: number;
-    dateattribute: string;
+    attribute: string;
     selected?: Date;
     formatDate: string;
 }
@@ -38,10 +38,9 @@ export class DatePicker extends Component<DatePickerProps, DatePickerState> {
 
         this.state = {
             isPlainText: true,
-            printDate: `12/05/1994`
+            printDate: ""
         };
         this.handleClick = this.handleClick.bind(this);
-        // this.handleChange = this.handleChange.bind(this);
     }
 
     render() {
@@ -54,7 +53,7 @@ export class DatePicker extends Component<DatePickerProps, DatePickerState> {
 
     private createDateInput() {
         return createElement(DateInput, {
-            dateattribute: this.props.dateattribute,
+            attribute: this.props.attribute,
             onClick: this.handleClick,
             printDate: this.state.printDate
         });
