@@ -5,7 +5,7 @@ import "react-infinite-calendar/styles.css";
 
 import { InfiniteCalendarProps, ReactInfiniteCalendar } from "../ReactInfiniteCalendar";
 
-describe("DatePicker", () => {
+describe("MobileDatepicker", () => {
     const shallowRenderCalendar = (props: InfiniteCalendarProps) => shallow(createElement(ReactInfiniteCalendar, props));
     const defaultProps: InfiniteCalendarProps = {
         actionClick: true,

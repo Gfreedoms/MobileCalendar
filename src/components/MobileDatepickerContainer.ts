@@ -1,5 +1,5 @@
 import { Component, createElement } from "react";
-import { DatePicker } from "./DatePicker";
+import { MobileDatepicker } from "./MobileDatepicker";
 
 interface WrapperProps {
     class: string;
@@ -59,7 +59,7 @@ export default class DatePickerContainer extends Component<ContainerProps, Conta
             || this.props.readOnly
             || !mxObject;
 
-        return createElement(DatePicker as any, {
+        return createElement(MobileDatepicker as any, {
             actionClick: this.props.actionClick,
             attribute: this.state.dateValue,
             autoFocus: this.props.autoFocus,

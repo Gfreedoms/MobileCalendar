@@ -1,9 +1,9 @@
-# Date Picker
+# Mobile Date Picker
 A mobile friendly date picker  
 
 ## Features
 ---
- **Infinite scroll** – Just keep scrollin', just keep scrollin'
+ **Infinite scroll** – Just keep scrolling, just keep scrolling
 * **Year selection** – For rapidly jumping from year to year
 * **Keyboard support** – ⬆️ ⬇️ ⬆️ ⬇️ ⬅️ ➡️ ⬅️ ➡️ ↩️
 * **Mobile-friendly** – Silky smooth scrolling on mobile
@@ -37,7 +37,7 @@ Place the widget in a data view.
  select the attribute on the tag entity selected above. 
 
 ## Issues, suggestions and feature requests
-We are actively maintaining this widget, please report any issues or suggestion for improvement at https://github.com/Gfreedoms/DatePicker/issues
+We are actively maintaining this widget, please report any issues or suggestion for improvement at https://github.com/FlockOfBirds/mobile-datepicker/issues
 
 ## Development and contribution
 Please follow [development guide](/development.md). 

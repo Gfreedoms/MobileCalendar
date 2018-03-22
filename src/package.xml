@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <package xmlns="http://www.mendix.com/package/1.0/">
-    <clientModule name="DatePicker" version="1.1.3" xmlns="http://www.mendix.com/clientModule/1.0/">
+    <clientModule name="MobileDatepicker" version="1.1.3" xmlns="http://www.mendix.com/clientModule/1.0/">
         <widgetFiles>
-            <widgetFile path="DatePicker.xml"/>
+            <widgetFile path="MobileDatepicker.xml"/>
         </widgetFiles>
         <files>
-            <file path="com/mendix/widget/custom/DatePicker"/>
+            <file path="com/mendix/widget/custom/MobileDatepicker"/>
         </files>
     </clientModule>
 </package>

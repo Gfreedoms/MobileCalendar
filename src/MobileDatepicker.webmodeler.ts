@@ -1,7 +1,7 @@
 import { Component, createElement } from "react";
 
-import { DatePicker, DatePickerProps, DatePickerState } from "./components/DatePicker";
-import { ContainerProps } from "./components/DatePickerContainer";
+import { DatePickerState, MobileDatepicker, MobileDatepickerProps } from "./components/MobileDatepicker";
+import { ContainerProps } from "./components/MobileDatepickerContainer";
 import "react-infinite-calendar/styles.css";
 
 declare function require(name: string): string;
@@ -9,10 +9,10 @@ declare function require(name: string): string;
 // tslint:disable-next-line class-name
 export class preview extends Component<ContainerProps, DatePickerState> {
     render() {
-        return createElement(DatePicker as any, preview.datePickerProps());
+        return createElement(MobileDatepicker as any, preview.datePickerProps());
     }
 
-    private static datePickerProps(): DatePickerProps {
+    private static datePickerProps(): MobileDatepickerProps {
         return {
             actionClick: false,
             attribute: "calender",
@@ -34,7 +34,7 @@ export class preview extends Component<ContainerProps, DatePickerState> {
 
 export function getPreviewCss() {
     return (
-        require("./ui/DatePicker.scss") + require("react-infinite-calendar/styles.css")
+        require("./ui/MobileDatepicker.scss") + require("react-infinite-calendar/styles.css")
     );
 }
 

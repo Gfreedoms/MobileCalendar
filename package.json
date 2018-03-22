@@ -1,6 +1,6 @@
 {
-  "name": "date-picker",
-  "widgetName": "DatePicker",
+  "name": "mobile-datepicker",
+  "widgetName": "MobileDatepicker",
   "version": "0.0.1",
   "description": "This widget lets users select a date to input into the text box using the popup calendar .",
   "scripts": {
@@ -27,11 +27,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mendixlabs/date-picker"
+    "url": "https://github.com/FlockOfBirds/mobile-datepicker"
   },
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/mendixlabs/date-picker/issues"
+    "url": "https://github.com/FlockOfBirds/mobile-datepicker/issues"
   },
   "babel": {
     "presets": [

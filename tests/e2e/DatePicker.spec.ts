@@ -1,6 +1,6 @@
 import home from "./pages/HomePage.page";
 
-describe("DatePicker", () => {
+describe("MobileDatepicker", () => {
     it("should display input field", () => {
         home.open();
         home.dateInput.waitForVisible();

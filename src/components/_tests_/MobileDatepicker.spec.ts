@@ -1,14 +1,14 @@
 import { mount , shallow } from "enzyme";
 import { createElement } from "react";
 
-import { DatePicker, DatePickerProps, DatePickerState } from "../DatePicker";
+import { DatePickerState, MobileDatepicker, MobileDatepickerProps } from "../MobileDatepicker";
 import { DateInput } from "../DateInput";
 import { ReactInfiniteCalendar } from "../ReactInfiniteCalendar";
 
-describe("DatePicker", () => {
-    const shallowRenderDatePicker = (props: DatePickerProps) => shallow(createElement(DatePicker, props));
-    const fullRenderDatePicker = (props: DatePickerProps) => mount(createElement(DatePicker, props));
-    const defaultProps: DatePickerProps = {
+describe("MobileDatepicker", () => {
+    const shallowRenderDatePicker = (props: MobileDatepickerProps) => shallow(createElement(MobileDatepicker, props));
+    const fullRenderDatePicker = (props: MobileDatepickerProps) => mount(createElement(MobileDatepicker, props));
+    const defaultProps: MobileDatepickerProps = {
         actionClick: false,
         attribute: "calender",
         autoFocus: true,

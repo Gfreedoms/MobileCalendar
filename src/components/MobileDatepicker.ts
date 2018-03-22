@@ -1,11 +1,11 @@
 import { Component, createElement } from "react";
-import "../ui/DatePicker.scss";
+import "../ui/MobileDatepicker.scss";
 
 import { ReactInfiniteCalendar } from "./ReactInfiniteCalendar";
 import { DateInput } from "./DateInput";
 import * as format from "date-fns/format";
 
-export interface DatePickerProps {
+export interface MobileDatepickerProps {
     className?: string;
     readOnly?: boolean;
     style?: object;
@@ -31,9 +31,9 @@ export interface DatePickerState {
     printDate: string;
 }
 
-export class DatePicker extends Component<DatePickerProps, DatePickerState> {
+export class MobileDatepicker extends Component<MobileDatepickerProps, DatePickerState> {
 
-    constructor(props: DatePickerProps) {
+    constructor(props: MobileDatepickerProps) {
         super(props);
 
         this.state = {
