@@ -1,7 +1,7 @@
-import { mount, shallow } from "enzyme";
+import { mount , shallow } from "enzyme";
 import { createElement } from "react";
 
-import { DatePicker, DatePickerProps , DatePickerState } from "../DatePicker";
+import { DatePicker, DatePickerProps, DatePickerState } from "../DatePicker";
 import { DateInput } from "../DateInput";
 import { ReactInfiniteCalendar } from "../ReactInfiniteCalendar";
 

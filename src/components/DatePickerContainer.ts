@@ -114,7 +114,7 @@ export default class DatePickerContainer extends Component<ContainerProps, Conta
     private updateDate(newDate: string) {
         this.props.mxObject.set(this.props.attribute, newDate);
 
-        if (this.props.actionClick === true) {
+        if (this.props.actionClick) {
             const { onChangeMicroflow, mxObject } = this.props;
             mx.data.get({
                 callback: (object) => {

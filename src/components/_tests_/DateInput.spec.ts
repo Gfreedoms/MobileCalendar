@@ -4,18 +4,18 @@ import * as FaCalendar from "react-icons/lib/fa/calendar";
 
 import { DateInput, DateInputProps } from "../DateInput";
 
-describe("DatePicker", () => {
+describe("DateInput", () => {
     const shallowRenderDatePicker = (props: DateInputProps) => shallow(createElement(DateInput, props));
     const defaultProps: DateInputProps = {
         attribute: "date",
-        onClick: jasmine.createSpy("click"),
+        onClick: jasmine.createSpy("onClick"),
         printDate: "12/05/1994"
     };
 
     it("should render the structure correctly", () => {
-        const createDate = shallowRenderDatePicker(defaultProps);
+        const dateInput = shallowRenderDatePicker(defaultProps);
 
-        expect(createDate).toBeElement(
+        expect(dateInput).toBeElement(
             createElement("div", {},
                 createElement("input", {
                     attribute: defaultProps.attribute,
@@ -35,9 +35,9 @@ describe("DatePicker", () => {
     });
 
     it("should respond to onclick events", () => {
-        const createDate = shallowRenderDatePicker(defaultProps);
+        const dateInput = shallowRenderDatePicker(defaultProps);
 
-        createDate.find("input").simulate("click");
+        dateInput.find("input").simulate("click");
 
         expect(defaultProps.onClick).toHaveBeenCalled();
     });

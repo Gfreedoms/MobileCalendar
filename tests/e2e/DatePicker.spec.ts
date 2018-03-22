@@ -1,33 +1,12 @@
-// import HomePageA from "./pages/HomePage.page";
+import home from "./pages/HomePage.page";
 
-describe("Camera", () => {
-    it("should display webcam", () => {
-        // webCam.open();
-        // webCam.webCam.waitForVisible();
-        // const video = webCam.webCam.isExisting();
+describe("DatePicker", () => {
+    it("should display input field", () => {
+        home.open();
+        home.dateInput.waitForVisible();
 
-        // expect(video).toBeTruthy();
-    });
+        const inputData = $("input").getAttribute("placeholder");
 
-    it("should take photo when 'take picture' button is clicked", () => {
-        // HomePageA.open();
-        // webCam.webCam.waitForVisible();
-        // webCam.takePictureButton.waitForVisible();
-        // webCam.takePictureButton.click();
-
-        // expect(webCam.image).toBeTruthy();
-    });
-
-    it("should retake photo when 'retake picture' button is clicked", () => {
-        // webCam.open();
-        // webCam.webCam.waitForVisible();
-        // webCam.takePictureButton.click();
-        // webCam.imageElement.waitForVisible();
-        // webCam.webCam.waitForVisible();
-        // webCam.takePictureButton.click();
-
-        // const videoStream = webCam.webCam.isExisting();
-
-        // expect(videoStream).toBeTruthy();
+        expect(inputData).toBeFalsy();
     });
 });

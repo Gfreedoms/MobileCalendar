@@ -21,7 +21,7 @@ exports.config = {
     bail: 0,
     screenshotPath: "dist/wdio/",
     baseUrl: debug ? "http://localhost:8080/" : "https://date-picker.mxapps.io/",
-    waitforTimeout: 100000,
+    waitforTimeout: 60000,
     connectionRetryTimeout: 90000,
     connectionRetryCount: 2,
     services: [ "selenium-standalone" ],

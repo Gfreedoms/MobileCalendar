@@ -40,6 +40,7 @@ export class DatePicker extends Component<DatePickerProps, DatePickerState> {
             isPlainText: true,
             printDate: ""
         };
+
         this.handleClick = this.handleClick.bind(this);
     }
 
