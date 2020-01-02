@@ -36,11 +36,17 @@
     "no-trailing-whitespace": true,
     "no-unused-expression": true,
     "no-var-keyword": true,
+    "no-submodule-imports": [
+      true,
+      "react-infinite-calendar/styles.css",
+      "date-fns/format",
+      "react-icons/lib/fa/calendar"
+    ],
     "one-line": [
       true,
       "check-catch",
-      "check-else",
       "check-finally",
+      "check-else",
       "check-open-brace",
       "check-whitespace"
     ],
@@ -96,12 +102,7 @@
     "no-unexpected-multiline": true,
     "no-sparse-arrays": true,
     "no-regex-spaces": true,
-    "no-submodule-imports": [
-      true,
-      "react-infinite-calendar/styles.css",
-      "date-fns/format",
-      "react-icons/lib/fa/calendar"
-    ],
+    "no-implicit-dependencies": false,
     "no-invalid-regexp": true,
     "valid-typeof": true,
     "array-bracket-spacing": [
@@ -139,27 +140,20 @@
       }
     ],
     "curly": false,
-    "arrow-parens": false,
-    "no-object-literal-type-assertion": false,
-    "linebreak-style": [
+    "max-line-length": [
       true,
-      "LF"
+      150
     ],
-    "object-literal-sort-keys": false,
-    "array-type": false
+    "arrow-parens": false,
+    "no-namespace": false
   },
   "jsRules": {
     "trailing-comma": [
       false
     ],
-    "object-literal-sort-keys": false,
     "array-bracket-spacing": [
       true,
       "always"
-    ],
-    "linebreak-style": [
-      true,
-      "LF"
     ]
   }
 }

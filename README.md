@@ -1,31 +1,26 @@
-# Mobile Calendar
-This is a mobile friendly date picker
+# Mobile Date Picker
+A mobile friendly date picker  
 
 ## Features
 ---
- **Infinite scroll** – Just keep scrollin', just keep scrollin'
-* **Customizeable** – Customize to the date format of your choice.
+ **Infinite scroll** – Just keep scrolling, just keep scrolling
 * **Year selection** – For rapidly jumping from year to year
 * **Keyboard support** – ⬆️ ⬇️ ⬆️ ⬇️ ⬅️ ➡️ ⬅️ ➡️ ↩️
 * **Mobile-friendly** – Silky smooth scrolling on mobile
 
 ## Dependencies
-Mendix 7.6.0
+Mendix 7.11.0
 
 ## Demo project
 ---
-https://calendarmobile.mxapps.io
+https://date-picker.mxapps.io/
 
 ![Demo](assets/Demo.gif)
 
 ## Usage
 Place the widget in a data view.
 
-
-
 ![General](assets/General.PNG)
-
-
 
 ### Data source configuration
 ---
@@ -42,10 +37,7 @@ Place the widget in a data view.
  select the attribute on the tag entity selected above. 
 
 ## Issues, suggestions and feature requests
-We are actively maintaining this widget, please report any issues or suggestion for improvement at https://github.com/Gfreedoms/MobileCalendar/issues
+We are actively maintaining this widget, please report any issues or suggestion for improvement at https://github.com/FlockOfBirds/mobile-datepicker/issues
 
 ## Development and contribution
 Please follow [development guide](/development.md). 
-
-## License
-* Mobile Calendar *is available under the MIT License.

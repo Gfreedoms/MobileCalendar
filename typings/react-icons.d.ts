@@ -1,1 +1,1 @@
-declare module "react-icons/lib/fa/calendar"
+declare module "react-icons/lib/fa/calendar";

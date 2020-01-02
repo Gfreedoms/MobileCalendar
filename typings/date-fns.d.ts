@@ -1,1 +1,1 @@
-declare module "date-fns/format"
+declare module "date-fns/format";
